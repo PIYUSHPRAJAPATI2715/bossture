@@ -1,0 +1,2100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boss Tours | Premium Travel Experiences</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-bg: #0a0a0a;
+            --charcoal: #1a1a1a;
+            --gold: #d4af37;
+            --light-gold: #f4e4a6;
+            --silver: #c0c0c0;
+            --light-gray: #e5e5e5;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--light-gray);
+            background-color: var(--dark-bg);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        /* Background overlays for sections */
+        .section-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .section-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            display: inline-block;
+            position: relative;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .accent {
+            color: var(--gold);
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            transition: var(--transition);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gold), var(--light-gold));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+            color: var(--dark-bg);
+            font-weight: 800;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0;
+            letter-spacing: 1px;
+        }
+        
+        .logo-text p {
+            font-size: 0.85rem;
+            color: var(--silver);
+            letter-spacing: 2px;
+            margin-top: -5px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 40px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--gold);
+            bottom: -5px;
+            left: 0;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--gold);
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--charcoal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            z-index: 999;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: var(--gold);
+            color: var(--dark-bg);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+            border-color: var(--gold);
+        }
+        
+        .whatsapp-float:active {
+            transform: translateY(-2px) scale(1.05);
+        }
+        
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                width: 55px;
+                height: 55px;
+                font-size: 1.8rem;
+            }
+        }
+        
+        /* Hero Section with Uploaded Image */
+        .hero {
+            padding: 180px 0 100px;
+            position: relative;
+            overflow: hidden;
+            background-color: var(--dark-bg);
+        }
+        
+        /* Image container for uploaded image */
+        .hero-image-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 0;
+            border: none;
+            box-shadow: none;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+        
+        /* Dark overlay for better text readability */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.7));
+            z-index: 1;
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-text {
+            max-width: 600px;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero .accent-line {
+            font-size: 1.6rem;
+            color: var(--gold);
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            color: var(--silver);
+            line-height: 1.8;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        /* Home Page Only - Primary Contact Number */
+        .primary-contact-number {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), var(--light-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            margin: 10px 0 20px;
+            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+        }
+        
+        /* Booking Form in Hero */
+        .booking-form {
+            background-color: rgba(26, 26, 26, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+        }
+        
+        .booking-form h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .booking-form input, .booking-form select {
+            width: 100%;
+            padding: 16px 20px;
+            background-color: rgba(10, 10, 10, 0.8);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .booking-form input:focus, .booking-form select:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+        
+        .booking-form input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .booking-form button {
+            width: 100%;
+            padding: 18px;
+            background-color: var(--gold);
+            color: var(--dark-bg);
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .booking-form button:hover {
+            background-color: var(--light-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+        
+        .btn:hover:before {
+            left: 100%;
+        }
+        
+        .btn-gold {
+            background-color: var(--gold);
+            color: var(--dark-bg);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-gold:hover {
+            background-color: var(--light-gold);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.4);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--gold);
+        }
+        
+        .btn-outline:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+            transform: translateY(-5px);
+            border-color: var(--light-gold);
+        }
+        
+        .btn i {
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+        
+        /* Tour Packages Section - Updated with actual images */
+        .packages {
+            padding: 80px 0;
+            background-color: #111;
+        }
+        
+        .package-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .package-card {
+            background-color: var(--charcoal);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            box-shadow: var(--shadow);
+        }
+        
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+        
+        .package-image {
+            height: 250px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .package-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s ease;
+        }
+        
+        .package-card:hover .package-image img {
+            transform: scale(1.05);
+        }
+        
+        .package-content {
+            padding: 25px;
+        }
+        
+        .package-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+        
+        .package-duration {
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: block;
+            font-size: 1.1rem;
+        }
+        
+        .package-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .package-features li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .package-features i {
+            color: var(--gold);
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+        
+        /* Updated About Section */
+        .about-bg {
+            background-image: url('https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            margin-bottom: 25px;
+        }
+        
+        .about-text p {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            color: var(--silver);
+        }
+        
+        /* Updated Owner Card */
+        .owner-card {
+            background-color: var(--charcoal);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .owner-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: var(--gold);
+        }
+        
+        .owner-photo-container {
+            margin: 0 auto 25px;
+            width: 200px;
+            height: 200px;
+            position: relative;
+        }
+        
+        .owner-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--gold);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+        
+        .owner-photo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.3);
+        }
+        
+        .owner-title {
+            margin: 25px 0 15px;
+            font-size: 1.8rem;
+            color: var(--gold);
+        }
+        
+        .owner-subtitle {
+            color: var(--silver);
+            font-size: 1rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        
+        .owner-info h4 {
+            margin-bottom: 5px;
+            color: var(--gold);
+        }
+        
+        .owner-info p {
+            color: var(--silver);
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+        
+        /* Services Section with background */
+        .services-bg {
+            background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: rgba(26, 26, 26, 0.9);
+            border-radius: 10px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--gold);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .service-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--gold), var(--light-gold));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover:before {
+            transform: scaleX(1);
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), transparent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: var(--gold);
+            font-size: 2rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .service-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .service-card p {
+            color: var(--silver);
+        }
+        
+        /* Updated Luxury Fleet Section - Text Only */
+        .fleet-section {
+            background-color: var(--dark-bg);
+        }
+        
+        .fleet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .fleet-item {
+            background-color: rgba(26, 26, 26, 0.9);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 20px;
+            min-height: 80px;
+        }
+        
+        .fleet-item:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold);
+            background-color: rgba(26, 26, 26, 1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .fleet-icon {
+            color: var(--gold);
+            font-size: 1.8rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        .fleet-name {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--white);
+            text-align: left;
+            flex-grow: 1;
+        }
+        
+        .fleet-name span {
+            color: var(--gold);
+            font-weight: 700;
+        }
+        
+        /* Routes Section with background */
+        .routes-bg {
+            background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+        }
+        
+        .routes-container {
+            position: relative;
+        }
+        
+        .routes-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 60px;
+        }
+        
+        .route-tab {
+            padding: 15px 30px;
+            background-color: transparent;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--silver);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+        
+        .route-tab.active, .route-tab:hover {
+            background-color: var(--gold);
+            color: var(--dark-bg);
+            border-color: var(--gold);
+        }
+        
+        .route-category {
+            display: none;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        .route-category.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .routes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .route-item {
+            background-color: rgba(26, 26, 26, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid var(--gold);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+        
+        .route-item:hover {
+            transform: translateY(-8px);
+            background-color: rgba(26, 26, 26, 1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .route-icon {
+            color: var(--gold);
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        
+        .route-info {
+            flex-grow: 1;
+        }
+        
+        .route-info h4 {
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .route-info p {
+            color: var(--silver);
+            font-size: 0.9rem;
+        }
+        
+        /* Why Choose Us with background */
+        .why-choose-bg {
+            background-image: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+        }
+        
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px;
+        }
+        
+        .why-card {
+            text-align: center;
+            padding: 40px 25px;
+            background-color: rgba(26, 26, 26, 0.9);
+            border-radius: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .why-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+        }
+        
+        .why-icon {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 25px;
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            background-color: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+        }
+        
+        .why-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .why-card p {
+            color: var(--silver);
+        }
+        
+        /* Contact Section */
+        .contact-bg {
+            background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+        }
+        
+        .contact-info h3 {
+            margin-bottom: 30px;
+        }
+        
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: var(--gold);
+            font-size: 1.5rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .contact-text h4 {
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+        
+        .contact-text a, .contact-text p {
+            color: var(--silver);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .contact-text a:hover {
+            color: var(--gold);
+        }
+        
+        .contact-form {
+            background-color: rgba(26, 26, 26, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 16px 20px;
+            background-color: rgba(10, 10, 10, 0.8);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+        
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #050505;
+            padding: 80px 0 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-logo h2 {
+            margin-bottom: 15px;
+        }
+        
+        .footer-logo p {
+            color: var(--silver);
+            margin-bottom: 25px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--gold);
+            color: var(--dark-bg);
+            transform: translateY(-5px);
+        }
+        
+        .footer-links h3, .footer-contact h3 {
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: var(--silver);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1100px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .contact-container {
+                gap: 40px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            
+            .hero-text {
+                text-align: center;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-cta {
+                justify-content: center;
+            }
+            
+            .owner-photo-container {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .package-cards {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background-color: rgba(10, 10, 10, 0.98);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 100px 40px 40px;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+                transition: var(--transition);
+                z-index: 1000;
+                border-left: 1px solid rgba(212, 175, 55, 0.2);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 0 0 25px 0;
+            }
+            
+            .nav-links a {
+                font-size: 1.1rem;
+            }
+            
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero .accent-line {
+                font-size: 1.4rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .booking-form {
+                padding: 30px 25px;
+            }
+            
+            .routes-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .route-tab {
+                width: 100%;
+                max-width: 250px;
+                text-align: center;
+            }
+            
+            .owner-photo-container {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .fleet-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .primary-contact-number {
+                font-size: 1.5rem;
+            }
+            
+            .package-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding: 130px 0 60px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero .accent-line {
+                font-size: 1.2rem;
+            }
+            
+            .booking-form h2 {
+                font-size: 1.8rem;
+            }
+            
+            section {
+                padding: 70px 0;
+            }
+            
+            .service-card, .why-card {
+                padding: 30px 20px;
+            }
+            
+            .owner-card {
+                padding: 25px;
+            }
+            
+            .booking-form {
+                padding: 25px 20px;
+            }
+            
+            .owner-photo-container {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .fleet-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .fleet-item {
+                padding: 20px 15px;
+            }
+            
+            .fleet-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.5rem;
+            }
+            
+            .fleet-name {
+                font-size: 1.2rem;
+            }
+            
+            .primary-contact-number {
+                font-size: 1.3rem;
+            }
+            
+            .package-card {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating WhatsApp Button -->
+    <a href="#" class="whatsapp-float" id="whatsappFloat">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <div class="logo-icon">B</div>
+                    <div class="logo-text">
+                        <h1>BOSS <span class="accent">TOURS</span></h1>
+                        <p>PREMIUM TRAVEL EXPERIENCES</p>
+                    </div>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#packages">Tour Packages</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#fleet">Luxury Fleet</a></li>
+                    <li><a href="#routes">Routes</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section with Uploaded Image -->
+    <section class="hero" id="home">
+        <!-- Image container for uploaded image -->
+        <div class="hero-image-container">
+            <!-- Using the Shirdi tour image as hero image -->
+            <img 
+                src="WhatsApp Image 2026-01-28 at 5.31.34 PM.jpeg" 
+                alt="Boss Tours Luxury Mumbai to Shirdi Tour Package" 
+                class="hero-image"
+                loading="lazy"
+            >
+            <div class="hero-overlay"></div>
+        </div>
+        
+        <div class="container section-content">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Your Journey, <span class="accent">Our Passion</span></h1>
+                    <p class="accent-line">Premium Tours & Travel Experiences</p>
+                    
+                    <!-- Primary Contact Number - Home Page Only -->
+                    <div class="primary-contact-number">
+                        <i class="fas fa-phone-alt"></i> Call: 9272174699
+                    </div>
+                    
+                    <p>Experience luxury travel with Boss Tours & Travels. From spiritual journeys to Shirdi and Shani Shingnapur to exciting Goa beach holidays and scenic Lonavala getaways, we craft unforgettable experiences for you and your family.</p>
+                    
+                    <div class="hero-cta">
+                        <a href="tel:+919272174699" class="btn btn-gold">
+                            <i class="fas fa-phone-alt"></i> Call Now
+                        </a>
+                        <a href="#packages" class="btn btn-outline">
+                            <i class="fas fa-map-marked-alt"></i> View Packages
+                        </a>
+                        <a href="#routes" class="btn btn-outline">
+                            <i class="fas fa-route"></i> View Routes
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Booking Form in Hero -->
+                <form action="https://wa.me/919272174699" method="get" class="booking-form" id="bookingForm">
+                    <h2>Book Your <span class="accent">Luxury Tour</span></h2>
+                    
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="tel" name="phone" placeholder="Mobile Number" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <select name="package" required>
+                            <option value="">Select Tour Package</option>
+                            <option>Mumbai to Shirdi & Shani Shingnapur (2D/1N)</option>
+                            <option>Mumbai to Goa Holiday (3N/4D)</option>
+                            <option>Mumbai to Lonavala & Khandala (1 Day Trip)</option>
+                            <option>Custom Tour Package</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="date" name="date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <select name="vehicle" required>
+                            <option value="">Select Vehicle</option>
+                            <option>Swift Dzire</option>
+                            <option>Hyundai Aura</option>
+                            <option>Maruti Ertiga</option>
+                            <option>Toyota Rumion</option>
+                            <option>Innova Crysta</option>
+                            <option>Kia Carens</option>
+                            <option>Tempo Traveller</option>
+                            <option>Luxury Bus</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit">
+                        <i class="fab fa-whatsapp"></i> Send Booking Request
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tour Packages Section with Actual Images -->
+    <section id="packages" class="packages">
+        <div class="container">
+            <div class="section-title">
+                <h2>Popular <span class="accent">Tour Packages</span></h2>
+                <p style="color: var(--silver); max-width: 800px; margin: 0 auto; font-size: 1.1rem;">
+                    Discover our exclusive travel experiences and special family offers
+                </p>
+            </div>
+            
+            <div class="package-cards">
+                <!-- Mumbai to Shirdi Package -->
+                <div class="package-card">
+                    <div class="package-image">
+                        <img 
+                            src="WhatsApp Image 2026-01-28 at 5.31.34 PM.jpeg" 
+                            alt="Mumbai to Shirdi & Shani Shingnapur Tour Package" 
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="package-content">
+                        <h3 class="package-title">MUMBAI to SHIRDI & SHANI SHINGNAPUR</h3>
+                        <span class="package-duration">2 DAYS / 1 NIGHT</span>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check-circle"></i> Shirdi Sai Baba Temple Visit</li>
+                            <li><i class="fas fa-check-circle"></i> Shani Shingnapur Temple Darshan</li>
+                            <li><i class="fas fa-check-circle"></i> Comfortable Accommodation</li>
+                            <li><i class="fas fa-check-circle"></i> Special Family Offer Available</li>
+                        </ul>
+                        <button class="btn btn-gold" style="width: 100%;" onclick="bookPackage('Mumbai to Shirdi')">
+                            <i class="fas fa-phone-alt"></i> Call for Best Rate
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Mumbai to Goa Package -->
+                <div class="package-card">
+                    <div class="package-image">
+                        <img 
+                            src="WhatsApp Image 2026-01-28 at 5.31.39 PM.jpeg" 
+                            alt="Mumbai to Goa Holiday Package" 
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="package-content">
+                        <h3 class="package-title">MUMBAI to GOA HOLIDAY</h3>
+                        <span class="package-duration">3 NIGHTS / 4 DAYS</span>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check-circle"></i> Baga, Calangute & Vagator Beaches</li>
+                            <li><i class="fas fa-check-circle"></i> Dudhsagar Waterfall Visit</li>
+                            <li><i class="fas fa-check-circle"></i> Bom Jesus & Old Goa Churches</li>
+                            <li><i class="fas fa-check-circle"></i> Chapora Fort Exploration</li>
+                        </ul>
+                        <button class="btn btn-gold" style="width: 100%;" onclick="bookPackage('Mumbai to Goa')">
+                            <i class="fas fa-phone-alt"></i> Call for Best Package
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Mumbai to Lonavala Package -->
+                <div class="package-card">
+                    <div class="package-image">
+                        <img 
+                            src="WhatsApp Image 2026-01-28 at 5.31.50 PM.jpeg" 
+                            alt="Mumbai to Lonavala & Khandala Tour Package" 
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="package-content">
+                        <h3 class="package-title">MUMBAI to LONAVALA & KHANDALA</h3>
+                        <span class="package-duration">1 DAY ROUND TRIP</span>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check-circle"></i> Lion's Point & Khandala Viewpoint</li>
+                            <li><i class="fas fa-check-circle"></i> Bhushi Dam & Tungarli Lake</li>
+                            <li><i class="fas fa-check-circle"></i> Karla Caves Exploration</li>
+                            <li><i class="fas fa-check-circle"></i> Referral Bonus on Next Ride</li>
+                        </ul>
+                        <button class="btn btn-gold" style="width: 100%;" onclick="bookPackage('Mumbai to Lonavala')">
+                            <i class="fas fa-phone-alt"></i> Book Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-bg about-bg"></div>
+        <div class="container section-content">
+            <div class="section-title">
+                <h2>About <span class="accent">Boss Tours</span></h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Premium Travel Experiences Since 2010</h3>
+                    <p>At Boss Tours, we specialize in crafting unforgettable travel experiences across Maharashtra and beyond. Our expertise ranges from spiritual journeys to Shirdi and Shani Shingnapur to exciting beach holidays in Goa and scenic getaways to Lonavala.</p>
+                    <p>With over a decade of experience, we have perfected the art of seamless travel, combining comfort, safety, and exceptional service to create memories that last a lifetime.</p>
+                    <p>Our family offers and special packages are designed to provide maximum value while maintaining the premium quality that our clients expect from Boss Tours.</p>
+                    
+                    <div style="margin-top: 40px;">
+                        <a href="#contact" class="btn btn-gold">
+                            <i class="fas fa-envelope"></i> Contact Us
+                        </a>
+                        <a href="tel:+919272174699" class="btn btn-outline" style="margin-left: 15px;">
+                            <i class="fas fa-phone-alt"></i> Call: 9272174699
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Owner Card -->
+                <div class="owner-card">
+                    <div class="owner-photo-container">
+                        <img 
+                            src="owner-photo.jpg" 
+                            alt="Owner of Boss Tours" 
+                            class="owner-photo"
+                            loading="lazy"
+                            width="200"
+                            height="200"
+                            onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSIxMDAiIGZpbGw9IiNkNGFmMzciLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzBhMGEwYSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjcwIiBmb250LXdlaWdodD0iYm9sZCI+QjwvdGV4dD48L3N2Zz4='"
+                        >
+                    </div>
+                    
+                    <h3 class="owner-title">Founder & Proprietor</h3>
+                    <p class="owner-subtitle">Owner – Boss Tours & Travels</p>
+                    
+                    <p style="color: var(--silver); margin-bottom: 20px; font-style: italic;">
+                        "At Boss Tours, we believe that every journey should be an experience of luxury and comfort. Our mission is to transform your travel from ordinary to extraordinary, ensuring safety, punctuality, and premium service at every step."
+                    </p>
+                    
+                    <div class="owner-info">
+                        <h4>Over 10 years experience in luxury travel</h4>
+                        <p>Specialized in Shirdi, Goa & Lonavala tours • Family packages • 24/7 customer support</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="section-bg services-bg"></div>
+        <div class="container section-content">
+            <div class="section-title">
+                <h2>Our <span class="accent">Premium Services</span></h2>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-temple"></i>
+                    </div>
+                    <h3>Spiritual Tours</h3>
+                    <p>Specialized packages to Shirdi, Shani Shingnapur, and other spiritual destinations with comfortable accommodation.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-umbrella-beach"></i>
+                    </div>
+                    <h3>Beach Holidays</h3>
+                    <p>Complete Goa packages with beach visits, waterfall tours, church visits, and premium accommodation.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <h3>Hill Station Getaways</h3>
+                    <p>Scenic trips to Lonavala, Khandala, Mahabaleshwar with viewpoints, lakes, and dam visits.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-suitcase-rolling"></i>
+                    </div>
+                    <h3>Family Packages</h3>
+                    <p>Special family offers with discounted rates, comfortable vehicles, and family-friendly itineraries.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-bus"></i>
+                    </div>
+                    <h3>Group Travel</h3>
+                    <p>Tempo travellers and luxury buses for group tours, family outings, and corporate events.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-concierge-bell"></i>
+                    </div>
+                    <h3>Custom Tours</h3>
+                    <p>Tailor-made itineraries based on your preferences, schedule, and budget requirements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Luxury Fleet Section -->
+    <section id="fleet" class="fleet-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our <span class="accent">Luxury Fleet</span></h2>
+                <p style="color: var(--silver); max-width: 800px; margin: 0 auto; font-size: 1.1rem;">
+                    Travel in comfort and style with our premium fleet of vehicles
+                </p>
+            </div>
+            
+            <div class="fleet-grid">
+                <div class="fleet-item">
+                    <div class="fleet-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="fleet-name">
+                        <span>Swift Dzire</span> - Comfort & Economy
+                    </div>
+                </div>
+                
+                <div class="fleet-item">
+                    <div class="fleet-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="fleet-name">
+                        <span>Hyundai Aura</span> - Premium Sedan
+                    </div>
+                </div>
+                
+                <div class="fleet-item">
+                    <div class="fleet-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="fleet-name">
+                        <span>Maruti Ertiga</span> - Family MPV
+                    </div>
+                </div>
+                
+                <div class="fleet-item">
+                    <div class="fleet-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="fleet-name">
+                        <span>Toyota Rumion</span> - Spacious Travel
+                    </div>
+                </div>
+                
+                <div class="fleet-item">
+                    <div class="fleet-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="fleet-name">
+                        <span>Innova Crysta</span> - Executive Luxury
+                    </div>
+                </div>
+                
+                <div class="fleet-item">
+                    <div class="fleet-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="fleet-name">
+                        <span>Kia Carens</span> - Premium Family SUV
+                    </div>
+                </div>
+                
+                <div class="fleet-item">
+                    <div class="fleet-icon">
+                        <i class="fas fa-bus"></i>
+                    </div>
+                    <div class="fleet-name">
+                        <span>Tempo Traveller</span> - Group Travel
+                    </div>
+                </div>
+                
+                <div class="fleet-item">
+                    <div class="fleet-icon">
+                        <i class="fas fa-bus"></i>
+                    </div>
+                    <div class="fleet-name">
+                        <span>Luxury Bus</span> - Large Group Comfort
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Routes Section -->
+    <section id="routes">
+        <div class="section-bg routes-bg"></div>
+        <div class="container section-content">
+            <div class="section-title">
+                <h2>Popular <span class="accent">Routes</span></h2>
+            </div>
+            
+            <div class="routes-container">
+                <div class="routes-tabs">
+                    <button class="route-tab active" data-category="tour">Tour Packages</button>
+                    <button class="route-tab" data-category="spiritual">Spiritual</button>
+                    <button class="route-tab" data-category="beach">Beach Holidays</button>
+                    <button class="route-tab" data-category="hill">Hill Stations</button>
+                </div>
+                
+                <div id="tour-routes" class="route-category active">
+                    <div class="routes-grid">
+                        <div class="route-item">
+                            <div class="route-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="route-info">
+                                <h4>Mumbai - Shirdi - Shani Shingnapur</h4>
+                                <p>2 Days / 1 Night | Spiritual journey with temple visits</p>
+                            </div>
+                        </div>
+                        
+                        <div class="route-item">
+                            <div class="route-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="route-info">
+                                <h4>Mumbai - Goa Beach Holiday</h4>
+                                <p>3 Nights / 4 Days | Beaches, waterfalls, churches</p>
+                            </div>
+                        </div>
+                        
+                        <div class="route-item">
+                            <div class="route-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="route-info">
+                                <h4>Mumbai - Lonavala - Khandala</h4>
+                                <p>1 Day Trip | Scenic viewpoints, lakes, caves</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="spiritual-routes" class="route-category">
+                    <div class="routes-grid">
+                        <div class="route-item">
+                            <div class="route-icon">
+                                <i class="fas fa-temple"></i>
+                            </div>
+                            <div class="route-info">
+                                <h4>Mumbai - Shirdi</h4>
+                                <p>Sai Baba Temple | Day trips & overnight packages</p>
+                            </div>
+                        </div>
+                        
+                        <div class="route-item">
+                            <div class="route-icon">
+                                <i class="fas fa-temple"></i>
+                            </div>
+                            <div class="route-info">
+                                <h4>Mumbai - Shani Shingnapur</h4>
+                                <p>Shani Temple | Combined with Shirdi tours</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="beach-routes" class="route-category">
+                    <div class="routes-grid">
+                        <div class="route-item">
+                            <div class="route-icon">
+                                <i class="fas fa-umbrella-beach"></i>
+                            </div>
+                            <div class="route-info">
+                                <h4>Mumbai - North Goa</h4>
+                                <p>Baga, Calangute, Vagator beaches | 3-4 day packages</p>
+                            </div>
+                        </div>
+                        
+                        <div class="route-item">
+                            <div class="route-icon">
+                                <i class="fas fa-umbrella-beach"></i>
+                            </div>
+                            <div class="route-info">
+                                <h4>Mumbai - South Goa</h4>
+                                <p>Palolem, Colva beaches | Quiet & serene getaways</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="hill-routes" class="route-category">
+                    <div class="routes-grid">
+                        <div class="route-item">
+                            <div class="route-icon">
+                                <i class="fas fa-mountain"></i>
+                            </div>
+                            <div class="route-info">
+                                <h4>Mumbai - Lonavala</h4>
+                                <p>Lion's Point, Bhushi Dam | 1-2 day trips</p>
+                            </div>
+                        </div>
+                        
+                        <div class="route-item">
+                            <div class="route-icon">
+                                <i class="fas fa-mountain"></i>
+                            </div>
+                            <div class="route-info">
+                                <h4>Mumbai - Khandala</h4>
+                                <p>Viewpoints, Karla Caves | Scenic drives</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="section-bg contact-bg"></div>
+        <div class="container section-content">
+            <div class="section-title">
+                <h2>Contact <span class="accent">Us</span></h2>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Call Us</h4>
+                            <!-- Removed +91 626165571 as requested -->
+                            <p>+91 9272174699</p>
+                            <p>+91 9156375533</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Operational Hours</h4>
+                            <p>24/7 Service Available</p>
+                            <p>Booking assistance round the clock</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Follow Us</h4>
+                            <a href="https://instagram.com/boss_tours_and_travels" target="_blank">@boss_tours_and_travels</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>WhatsApp Enquiry</h4>
+                            <p>Click the floating WhatsApp button for instant assistance</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Quick Enquiry</h3>
+                    <form id="enquiryForm">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="tel" placeholder="Mobile Number" required>
+                        <input type="email" placeholder="Email Address">
+                        <textarea placeholder="Your Message / Travel Requirements" required></textarea>
+                        <button type="submit" class="btn btn-gold" style="width: 100%;">
+                            <i class="fas fa-paper-plane"></i> Send Enquiry
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>BOSS <span class="accent">TOURS</span></h2>
+                    <p>"Your Journey, Our Passion"</p>
+                    <p>Experience premium travel with our specialized tour packages to Shirdi, Goa, Lonavala and beyond.</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/boss_tours_and_travels" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/919272174699" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="mailto:info@bosstours.com">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#packages">Tour Packages</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#fleet">Luxury Fleet</a></li>
+                        <li><a href="#routes">Routes</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact Info</h3>
+                    <!-- Removed +91 626165571 as requested -->
+                    <p><i class="fas fa-phone-alt" style="margin-right: 10px; color: var(--gold);"></i> 9272174699</p>
+                    <p><i class="fas fa-phone-alt" style="margin-right: 10px; color: var(--gold);"></i> 9156375533</p>
+                    <p><i class="fab fa-instagram" style="margin-right: 10px; color: var(--gold);"></i> @boss_tours_and_travels</p>
+                    <p><i class="fas fa-clock" style="margin-right: 10px; color: var(--gold);"></i> 24/7 Service Available</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; <script>document.write(new Date().getFullYear())</script> Boss Tours & Travels. All Rights Reserved. | Premium Travel Experiences</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Floating WhatsApp Button
+        const whatsappFloat = document.getElementById('whatsappFloat');
+        const whatsappMessage = "Hello Boss Tours, I want to enquire about tour packages.";
+        
+        whatsappFloat.addEventListener('click', (e) => {
+            e.preventDefault();
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            window.open(`https://wa.me/919272174699?text=${encodedMessage}`, '_blank');
+        });
+        
+        // Route category tabs
+        const routeTabs = document.querySelectorAll('.route-tab');
+        const routeCategories = document.querySelectorAll('.route-category');
+        
+        routeTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and categories
+                routeTabs.forEach(t => t.classList.remove('active'));
+                routeCategories.forEach(cat => cat.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Show corresponding category
+                const category = tab.getAttribute('data-category');
+                document.getElementById(`${category}-routes`).classList.add('active');
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.backgroundColor = 'rgba(10, 10, 10, 0.98)';
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.3)';
+            } else {
+                header.style.backgroundColor = 'rgba(10, 10, 10, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+        
+        // Form submission enhancement
+        const bookingForm = document.getElementById('bookingForm');
+        
+        bookingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values for WhatsApp message
+            const name = this.name.value;
+            const phone = this.phone.value;
+            const package = this.package.value;
+            const date = this.date.value;
+            const vehicle = this.vehicle.value;
+            
+            // Create WhatsApp message
+            const message = `*Tour Package Booking - Boss Tours*%0A%0AName: ${name}%0APhone: ${phone}%0APackage: ${package}%0ADate: ${date}%0AVehicle: ${vehicle}%0A%0AI would like to book a tour package. Please contact me.`;
+            
+            // Redirect to WhatsApp
+            window.open(`https://wa.me/919272174699?text=${message}`, '_blank');
+        });
+        
+        // Package booking function
+        function bookPackage(packageName) {
+            const message = `Hello Boss Tours, I'm interested in the ${packageName} tour package. Please contact me with more details and best rates.`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/919272174699?text=${encodedMessage}`, '_blank');
+        }
+        
+        // Enquiry form handler
+        const enquiryForm = document.getElementById('enquiryForm');
+        
+        enquiryForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = this.querySelector('input[type="text"]').value;
+            const phone = this.querySelector('input[type="tel"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            const message = this.querySelector('textarea').value;
+            
+            const enquiryMessage = `*Enquiry - Boss Tours*%0A%0AName: ${name}%0APhone: ${phone}%0AEmail: ${email}%0AMessage: ${message}%0A%0APlease contact me regarding tour packages.`;
+            
+            window.open(`https://wa.me/919272174699?text=${enquiryMessage}`, '_blank');
+            
+            // Reset form
+            this.reset();
+            alert('Thank you for your enquiry! You will be redirected to WhatsApp.');
+        });
+        
+        // Set minimum date to today for booking form
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.querySelector('input[name="date"]').min = today;
+            
+            // Initialize first route category as active
+            document.querySelector('.route-tab.active').click();
+            
+            // Image loading optimization
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                if (img.complete) {
+                    img.style.opacity = '1';
+                } else {
+                    img.addEventListener('load', function() {
+                        this.style.opacity = '1';
+                    });
+                    // Fallback in case image fails to load
+                    setTimeout(() => {
+                        img.style.opacity = '1';
+                    }, 500);
+                }
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

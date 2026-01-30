@@ -1,0 +1,1007 @@
+/* 
+ * Boss Tours Premium Styles 
+ * Theme: Dark Luxury (Black, Gold, Glass)
+ */
+
+:root {
+    --bg-dark: #050505;
+    --bg-card: rgba(20, 20, 20, 0.6);
+    --gold-primary: #d4af37;
+    --gold-secondary: #f4e4a6;
+    --gold-dim: #aa8c2c;
+    --text-main: #f0f0f0;
+    --text-muted: #a0a0a0;
+    --glass-border: rgba(212, 175, 55, 0.2);
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-heading);
+    color: var(--gold-secondary);
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-smooth);
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gold-dim);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-primary);
+}
+
+/* Preloader */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.loader-logo {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--gold-primary);
+    position: relative;
+    animation: fillText 2s ease-in-out infinite alternate;
+}
+
+.loader-line {
+    width: 0;
+    height: 2px;
+    background: var(--gold-primary);
+    margin-top: 20px;
+    animation: expandLine 1.5s ease-in-out forwards;
+}
+
+@keyframes fillText {
+    0% {
+        fill: transparent;
+        stroke-dashoffset: 25%;
+    }
+
+    100% {
+        fill: var(--gold-secondary);
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes expandLine {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 200px;
+    }
+}
+
+/* Utilities */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.text-gold {
+    color: var(--gold-primary);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    border: 1px solid var(--gold-primary);
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    cursor: pointer;
+    background: transparent;
+    color: var(--gold-primary);
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: var(--gold-primary);
+    z-index: -1;
+    transition: var(--transition-smooth);
+}
+
+.btn:hover {
+    color: #000;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+.btn:hover::before {
+    width: 100%;
+}
+
+.btn-fill {
+    background: var(--gold-primary);
+    color: #000;
+}
+
+.btn-fill:hover {
+    background: var(--gold-secondary);
+    color: #000;
+}
+
+/* Animations */
+.fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1.5rem 0;
+    z-index: 1000;
+    transition: var(--transition-smooth);
+}
+
+.navbar.scrolled {
+    background: rgba(5, 5, 5, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-link {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--gold-primary);
+    transition: var(--transition-smooth);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.mobile-toggle {
+    display: none;
+    font-size: 1.5rem;
+    color: var(--gold-primary);
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+    transform: scale(1.1);
+    /* Simple parallax handled by JS or fixed attachment */
+    filter: brightness(0.4);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(5, 5, 5, 0.3), rgba(5, 5, 5, 1));
+    z-index: -1;
+}
+
+.hero-content {
+    max-width: 800px;
+    z-index: 1;
+}
+
+.hero-title {
+    font-size: 4.5rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(to right, #fff, var(--gold-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+}
+
+/* Sections */
+section {
+    padding: 6rem 0;
+}
+
+.section-title {
+    margin-bottom: 4rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--gold-primary);
+}
+
+/* Cards (Services & Packages) */
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    position: relative;
+    backdrop-filter: blur(5px);
+}
+
+.card:hover {
+    /* Styles handled by new Premium block at bottom of file */
+}
+
+.card-img-wrapper {
+    width: 100%;
+    height: auto;
+    /* Let image dictate height */
+    overflow: hidden;
+    position: relative;
+}
+
+.card-img-wrapper img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    /* Ensure full image is visible */
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.card:hover .card-img-wrapper img {
+    transform: scale(1.1);
+}
+
+.card-content {
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.card-title {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.card-text {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    color: var(--gold-primary);
+    margin-bottom: 1.5rem;
+}
+
+/* Fleet/Gallery - Masonryish */
+.fleet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    grid-auto-rows: 250px;
+    /* Consistent height */
+}
+
+.fleet-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border);
+}
+
+/* Routes Section */
+.routes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.route-item {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--glass-border);
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    color: #e0e0e0;
+}
+
+.route-item i {
+    color: var(--gold-primary);
+    font-size: 0.8rem;
+}
+
+.route-item:hover {
+    background: var(--gold-primary);
+    color: #000;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+}
+
+.route-item:hover i {
+    color: #000;
+}
+
+/* Removed nth-child span rules to make all items uniform */
+
+.fleet-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.fleet-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.fleet-item:hover .fleet-overlay {
+    opacity: 1;
+}
+
+.fleet-item:hover .fleet-img {
+    transform: scale(1.1);
+}
+
+/* Booking Form */
+.booking-section {
+    background: url('WhatsApp Image 2026-01-30 at 8.15.38 PM.jpeg') fixed center/cover;
+    position: relative;
+}
+
+.form-wrapper {
+    background: rgba(0, 0, 0, 0.85);
+    padding: 3rem;
+    border-radius: 15px;
+    border: 1px solid var(--glass-border);
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    appearance: none;
+    /* Remove default arrow for consistent look */
+}
+
+select.form-control {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+    cursor: pointer;
+}
+
+select.form-control option {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--gold-primary);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* WhatsApp Float */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: #25D366;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    animation: bounce 2s infinite;
+    transition: transform 0.3s;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+/* Phone Float */
+.phone-float {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 60px;
+    height: 60px;
+    background: #007bff;
+    /* Standard Blue */
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    animation: bounce 2s infinite;
+    animation-delay: 1s;
+    /* Alternate bounce with WhatsApp */
+    transition: transform 0.3s;
+}
+
+.phone-float:hover {
+    transform: scale(1.1);
+    background: #0056b3;
+}
+
+/* Testimonials */
+.testimonial-card .card-text {
+    font-style: italic;
+    font-size: 1.05rem;
+    color: #dedede;
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Footer */
+footer {
+    background: #000;
+    border-top: 1px solid var(--glass-border);
+    padding: 4rem 0 2rem;
+    color: var(--text-muted);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.social-links a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    margin-right: 10px;
+    color: var(--gold-secondary);
+}
+
+.social-links a:hover {
+    background: var(--gold-primary);
+    color: #000;
+    transform: translateY(-3px);
+}
+
+/* Mobile Responsive */
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .section-title {
+        margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+        font-size: 2rem;
+    }
+
+    /* Navbar Mobile */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 85%;
+        height: 100vh;
+        background: rgba(5, 5, 5, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 999;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-link {
+        font-size: 1.2rem;
+    }
+
+    .mobile-toggle {
+        display: block;
+        z-index: 1000;
+        font-size: 1.8rem;
+    }
+
+    /* Grids */
+    .grid-3 {
+        grid-template-columns: 1fr;
+        /* Single column for packages/services */
+        gap: 2rem;
+    }
+
+    /* Fleet Grid - keep 2 cols on tablet/large phone, 1 on small */
+    .fleet-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* Small Mobile */
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .fleet-grid {
+        grid-template-columns: 1fr;
+        /* Full width images for small phones */
+    }
+
+    .booking-section .form-wrapper {
+        padding: 2rem 1.5rem;
+    }
+
+    .whatsapp-float,
+    .phone-float {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        bottom: 20px;
+    }
+
+    .whatsapp-float {
+        right: 20px;
+    }
+
+    .phone-float {
+        left: 20px;
+    }
+}
+
+/* -----------------------------------------------------------
+   ADVANCED VISUAL ENHANCEMENTS & ANIMATIONS 
+   ----------------------------------------------------------- */
+
+/* 1. Enhanced Logo */
+.logo {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    letter-spacing: 2px;
+    background: linear-gradient(45deg, #fff, var(--gold-primary), #fff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 3s linear infinite;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
+}
+
+/* 2. Premium Button Shimmer */
+.btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.btn:hover::after {
+    left: 100%;
+    transition: 0.5s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+}
+
+/* 3. Deep Glassmorphism & Card Glow */
+.card,
+.fleet-item,
+.route-item {
+    background: rgba(20, 20, 20, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    /* More subtle initial border */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover,
+.fleet-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--gold-primary);
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(212, 175, 55, 0.2) inset;
+    /* Warning: inset glow */
+}
+
+/* 4. Hero Text Floating Animation */
+.hero-title {
+    animation: float 6s ease-in-out infinite;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* 5. Section Title Decoration Animation */
+.section-title::after {
+    width: 0;
+    /* Start with 0 width */
+    animation: expandWidth 1s ease-out forwards;
+    animation-delay: 0.5s;
+    /* Delay slightly */
+}
+
+@keyframes expandWidth {
+    to {
+        width: 80px;
+    }
+}
+
+.section-title.visible::after {
+    width: 80px;
+}
+
+/* 6. Form Control Glow */
+.form-control:focus {
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+    border-color: var(--gold-primary);
+}
+
+/* 7. Living Background (Subtle Pulse) */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.03), transparent 70%);
+    z-index: -1;
+    animation: pulseBg 10s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes pulseBg {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+/* 8. Advanced Service Card Animation */
+#services .card {
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Bouncy transition */
+    background: linear-gradient(145deg, rgba(20, 20, 20, 0.8), rgba(10, 10, 10, 0.95));
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+#services .card:hover {
+    transform: translateY(-15px) scale(1.05);
+    /* Pop effect */
+    background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(40, 40, 40, 0.9));
+    border: 1px solid var(--gold-primary);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15);
+    /* Golden Glow */
+}
+
+#services .card-icon {
+    transition: transform 0.5s ease;
+    display: inline-block;
+}
+
+#services .card:hover .card-icon {
+    animation: iconPulse 1s infinite alternate;
+    color: #fff;
+    text-shadow: 0 0 15px var(--gold-primary);
+    transform: scale(1.2);
+}
+
+@keyframes iconPulse {
+    0% {
+        transform: scale(1.1);
+        text-shadow: 0 0 10px var(--gold-primary);
+    }
+
+    100% {
+        transform: scale(1.25);
+        text-shadow: 0 0 20px var(--gold-secondary);
+    }
+}
+
+@keyframes spinIcon {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(180deg) scale(1.2);
+    }
+
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+/* 9. Scroll Reveal Stagger */
+/* Add staggered delays to grid items for a wave effect */
+.grid-3 .card:nth-child(2) {
+    transition-delay: 0.1s;
+}
+
+.grid-3 .card:nth-child(3) {
+    transition-delay: 0.2s;
+}
+
+.fleet-grid .fleet-item:nth-child(2) {
+    transition-delay: 0.1s;
+}
+
+.fleet-grid .fleet-item:nth-child(3) {
+    transition-delay: 0.2s;
+}
+
+.fleet-grid .fleet-item:nth-child(4) {
+    transition-delay: 0.3s;
+}
+
+.fleet-grid .fleet-item:nth-child(5) {
+    transition-delay: 0.4s;
+}
+
+.routes-grid .route-item:hover {
+    background: linear-gradient(90deg, var(--gold-primary), var(--gold-secondary));
+    color: #000;
+    font-weight: bold;
+    transform: translateX(10px);
+    /* Slid sideways */
+}
+}
+
+/* 6. Form Control Glow */
+.form-control:focus {
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+    border-color: var(--gold-primary);
+}
