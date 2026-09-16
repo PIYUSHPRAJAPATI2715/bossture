@@ -109,7 +109,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <span className="text-xs text-slate-500 block uppercase font-semibold">Head Office</span>
-                    <span className="text-slate-900 font-semibold text-xs">Main Highway Hub, Santacruz East, Mumbai, MH 400098</span>
+                    <span className="text-slate-900 font-semibold text-xs">Shop No. 5, Diva Manpada Road, B.R. Nagar, Diva East, Thane, Maharashtra - 400612</span>
                   </div>
                 </div>
               </div>
