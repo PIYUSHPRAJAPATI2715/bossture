@@ -172,22 +172,34 @@ async function seed() {
     );
   }
 
-  // 4. Seed Popular Outstation Routes
+  // 4. Seed 25 Popular Maharashtra Outstation Routes
   await db.run(`DELETE FROM routes`);
   const routesData = [
-    { from_city: 'Mumbai', to_city: 'Shirdi', distance_km: 240, est_time: '4.5 hrs', start_price: 3800 },
-    { from_city: 'Mumbai', to_city: 'Pune', distance_km: 150, est_time: '3.0 hrs', start_price: 2400 },
-    { from_city: 'Mumbai', to_city: 'Lonavala', distance_km: 85, est_time: '2.0 hrs', start_price: 2000 },
-    { from_city: 'Mumbai', to_city: 'Khandala', distance_km: 80, est_time: '1.8 hrs', start_price: 1900 },
-    { from_city: 'Mumbai', to_city: 'Mahabaleshwar', distance_km: 260, est_time: '5.5 hrs', start_price: 4200 },
-    { from_city: 'Mumbai', to_city: 'Nashik', distance_km: 170, est_time: '3.5 hrs', start_price: 2800 },
-    { from_city: 'Mumbai', to_city: 'Goa', distance_km: 590, est_time: '10.5 hrs', start_price: 9500 },
-    { from_city: 'Mumbai', to_city: 'Trimbakeshwar', distance_km: 180, est_time: '3.8 hrs', start_price: 3000 },
-    { from_city: 'Mumbai', to_city: 'Pandharpur', distance_km: 360, est_time: '6.5 hrs', start_price: 5500 },
-    { from_city: 'Mumbai', to_city: 'Shani Shingnapur', distance_km: 290, est_time: '5.5 hrs', start_price: 4500 },
-    { from_city: 'Mumbai', to_city: 'Aurangabad', distance_km: 340, est_time: '6.0 hrs', start_price: 5200 },
-    { from_city: 'Mumbai', to_city: 'Alibaug', distance_km: 95, est_time: '2.5 hrs', start_price: 2200 },
-    { from_city: 'Mumbai', to_city: 'Ratnagiri', distance_km: 330, est_time: '6.5 hrs', start_price: 5500 }
+    { from_city: 'Mumbai', to_city: 'Shirdi', distance_km: 240, est_time: '4.5 hrs', start_price: 0 },
+    { from_city: 'Mumbai', to_city: 'Pune', distance_km: 150, est_time: '3.0 hrs', start_price: 0 },
+    { from_city: 'Mumbai', to_city: 'Lonavala', distance_km: 85, est_time: '2.0 hrs', start_price: 0 },
+    { from_city: 'Mumbai', to_city: 'Khandala', distance_km: 80, est_time: '1.8 hrs', start_price: 0 },
+    { from_city: 'Mumbai', to_city: 'Mahabaleshwar', distance_km: 260, est_time: '5.5 hrs', start_price: 0 },
+    { from_city: 'Mumbai', to_city: 'Nashik', distance_km: 170, est_time: '3.5 hrs', start_price: 0 },
+    { from_city: 'Mumbai', to_city: 'Trimbakeshwar', distance_km: 180, est_time: '3.8 hrs', start_price: 0 },
+    { from_city: 'Mumbai', to_city: 'Aurangabad (Chh. Sambhajinagar)', distance_km: 340, est_time: '6.0 hrs', start_price: 0 },
+    { from_city: 'Mumbai', to_city: 'Alibaug', distance_km: 95, est_time: '2.5 hrs', start_price: 0 },
+    { from_city: 'Mumbai', to_city: 'Pandharpur', distance_km: 360, est_time: '6.5 hrs', start_price: 0 },
+    { from_city: 'Mumbai', to_city: 'Shani Shingnapur', distance_km: 290, est_time: '5.5 hrs', start_price: 0 },
+    { from_city: 'Mumbai', to_city: 'Goa', distance_km: 590, est_time: '10.5 hrs', start_price: 0 },
+    { from_city: 'Mumbai', to_city: 'Ratnagiri', distance_km: 330, est_time: '6.5 hrs', start_price: 0 },
+    { from_city: 'Mumbai', to_city: 'Ganpatipule', distance_km: 345, est_time: '7.0 hrs', start_price: 0 },
+    { from_city: 'Mumbai', to_city: 'Kolhapur', distance_km: 380, est_time: '7.0 hrs', start_price: 0 },
+    { from_city: 'Mumbai', to_city: 'Lavasa', distance_km: 185, est_time: '4.0 hrs', start_price: 0 },
+    { from_city: 'Mumbai', to_city: 'Matheran', distance_km: 90, est_time: '2.5 hrs', start_price: 0 },
+    { from_city: 'Mumbai', to_city: 'Igatpuri', distance_km: 120, est_time: '2.5 hrs', start_price: 0 },
+    { from_city: 'Mumbai', to_city: 'Bhimashankar', distance_km: 215, est_time: '4.5 hrs', start_price: 0 },
+    { from_city: 'Mumbai', to_city: 'Tuljapur', distance_km: 440, est_time: '8.0 hrs', start_price: 0 },
+    { from_city: 'Mumbai', to_city: 'Akkalkot', distance_km: 450, est_time: '8.5 hrs', start_price: 0 },
+    { from_city: 'Mumbai', to_city: 'Malvan / Tarkarli', distance_km: 490, est_time: '9.5 hrs', start_price: 0 },
+    { from_city: 'Mumbai', to_city: 'Solapur', distance_km: 400, est_time: '7.5 hrs', start_price: 0 },
+    { from_city: 'Pune', to_city: 'Shirdi', distance_km: 185, est_time: '4.0 hrs', start_price: 0 },
+    { from_city: 'Pune', to_city: 'Mahabaleshwar', distance_km: 120, est_time: '3.0 hrs', start_price: 0 }
   ];
 
   for (const r of routesData) {

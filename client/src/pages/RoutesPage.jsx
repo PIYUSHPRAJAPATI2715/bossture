@@ -3,21 +3,22 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { MapPin, Search, Clock, ArrowRight, Compass } from 'lucide-react';
 import axios from 'axios';
+import { maharashtraRoutes } from '../data/maharashtraRoutes';
 
 export default function RoutesPage() {
-  const [routes, setRoutes] = useState([]);
+  const [routes, setRoutes] = useState(maharashtraRoutes);
   const [searchTerm, setSearchTerm] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     axios.get('/api/routes')
       .then(res => {
-        setRoutes(res.data);
-        setLoading(false);
+        if (res.data && res.data.length > 0) {
+          setRoutes(res.data);
+        }
       })
       .catch(err => {
         console.error('Error fetching routes:', err);
-        setLoading(false);
       });
   }, []);
 
@@ -37,12 +38,12 @@ export default function RoutesPage() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-12"
         >
-          <span className="text-xs font-bold text-amber-600 uppercase tracking-widest">Outstation Cab Directory</span>
+          <span className="text-xs font-bold text-amber-600 uppercase tracking-widest">Maharashtra Outstation Directory</span>
           <h1 className="font-serif text-3xl sm:text-5xl font-extrabold text-slate-900 mt-2 mb-4">
-            Popular <span className="text-amber-600">Routes from Mumbai</span>
+            Famous <span className="text-amber-600">Maharashtra Routes</span>
           </h1>
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-            Safe, reliable, and affordable outstation cab trips with transparent flat pricing.
+            Safe, reliable, and comfortable outstation cab trips to top 25+ famous destinations across Maharashtra.
           </p>
         </motion.div>
 
@@ -58,7 +59,7 @@ export default function RoutesPage() {
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search destination city (e.g. Shirdi, Goa, Pune, Lonavala...)"
+            placeholder="Search destination city (e.g. Shirdi, Mahabaleshwar, Pune, Lonavala...)"
             className="w-full bg-white border border-slate-300 rounded-full pl-12 pr-6 py-3.5 text-sm text-slate-900 focus:outline-none focus:border-amber-500 shadow-md font-medium"
           />
         </motion.div>
@@ -69,10 +70,10 @@ export default function RoutesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredRoutes.map((route, idx) => (
               <motion.div
-                key={route.id}
+                key={route.id || route.to_city}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: idx * 0.08 }}
+                transition={{ duration: 0.4, delay: idx * 0.04 }}
                 whileHover={{ y: -4 }}
                 className="bg-white p-6 rounded-2xl border border-slate-200 flex flex-col justify-between hover:border-amber-400 transition-all duration-300 shadow-sm hover:shadow-xl group"
               >
@@ -88,7 +89,7 @@ export default function RoutesPage() {
 
                   <h3 className="font-serif text-xl font-bold text-slate-900 mb-2 flex items-center gap-2 group-hover:text-amber-600 transition">
                     <span>{route.from_city}</span>
-                    <ArrowRight className="w-4 h-4 text-amber-600" />
+                    <ArrowRight className="w-4 h-4 text-amber-600 shrink-0" />
                     <span>{route.to_city}</span>
                   </h3>
 
@@ -98,13 +99,12 @@ export default function RoutesPage() {
                 </div>
 
                 <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                  <div>
-                    <span className="text-[11px] text-slate-500 block font-medium uppercase">Starting Fare</span>
-                    <span className="font-serif text-xl font-extrabold text-amber-600">₹{route.start_price.toLocaleString('en-IN')}</span>
-                  </div>
+                  <span className="text-xs font-bold text-amber-700 bg-amber-50 px-3 py-1.5 rounded-xl border border-amber-200/60">
+                    Sanitized AC Cab
+                  </span>
                   <Link
                     to={`/booking?pickup=${encodeURIComponent(route.from_city)}&drop=${encodeURIComponent(route.to_city)}`}
-                    className="gold-btn px-4 py-2 rounded-xl text-xs font-bold uppercase shadow-md"
+                    className="gold-btn px-5 py-2.5 rounded-xl text-xs font-extrabold uppercase shadow-md"
                   >
                     Book Cab
                   </Link>

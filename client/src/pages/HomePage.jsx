@@ -10,12 +10,13 @@ import {
 import axios from 'axios';
 import { trackPhoneCall } from '../config/googleAds';
 import { getImageUrl, handleImageError } from '../utils/imageUrl';
+import { maharashtraRoutes } from '../data/maharashtraRoutes';
 
 export default function HomePage() {
   const navigate = useNavigate();
   const [packages, setPackages] = useState([]);
   const [cars, setCars] = useState([]);
-  const [routes, setRoutes] = useState([]);
+  const [routes, setRoutes] = useState(maharashtraRoutes);
   
   // Active Booking Tab: 'oneway' | 'roundtrip' | 'local' | 'airport'
   const [bookingTab, setBookingTab] = useState('oneway');
@@ -54,7 +55,9 @@ export default function HomePage() {
   useEffect(() => {
     axios.get('/api/packages').then(res => setPackages(res.data.slice(0, 3))).catch(() => {});
     axios.get('/api/cars').then(res => setCars(res.data)).catch(() => {});
-    axios.get('/api/routes').then(res => setRoutes(res.data.slice(0, 12))).catch(() => {});
+    axios.get('/api/routes').then(res => {
+      if (res.data && res.data.length > 0) setRoutes(res.data);
+    }).catch(() => {});
   }, []);
 
   const popularPickups = [
@@ -657,7 +660,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. MANSI-STYLE POPULAR OUTSTATION ROUTES CARDS */}
+      {/* 3. POPULAR MAHARASHTRA OUTSTATION ROUTES CARDS (NO RATES) */}
       <section className="py-16 sm:py-24 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
@@ -666,12 +669,12 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="text-center mb-12 sm:mb-16"
           >
-            <span className="text-xs font-bold text-amber-600 uppercase tracking-widest block mb-2">Direct Flat Fares</span>
+            <span className="text-xs font-bold text-amber-600 uppercase tracking-widest block mb-2">Maharashtra Outstation Directory</span>
             <h2 className="font-serif text-2xl sm:text-4xl font-extrabold text-slate-900 mb-3">
               Popular <span className="text-amber-600">Outstation Cab Routes</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto">
-              Transparent fixed fares for one-way drops and round-trip journeys across Maharashtra, Goa, and Gujarat.
+              Sanitized AC cabs for one-way drops & round-trip journeys across 25+ top famous destinations in Maharashtra.
             </p>
           </motion.div>
 
@@ -682,9 +685,9 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            {routes.slice(0, 6).map((route) => (
+            {routes.slice(0, 12).map((route) => (
               <motion.div
-                key={route.id}
+                key={route.id || route.to_city}
                 variants={itemVariants}
                 whileHover={{ y: -6 }}
                 className="bg-white p-6 rounded-2xl border border-slate-200 flex flex-col justify-between hover:border-amber-400 transition-all duration-300 shadow-sm hover:shadow-xl group"
@@ -711,13 +714,12 @@ export default function HomePage() {
                 </div>
 
                 <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                  <div>
-                    <span className="text-[11px] text-slate-500 block uppercase font-medium">Starting Fare</span>
-                    <span className="font-serif text-2xl font-extrabold text-amber-600">₹{route.start_price.toLocaleString('en-IN')}</span>
-                  </div>
+                  <span className="text-xs font-bold text-amber-700 bg-amber-50 px-3 py-1.5 rounded-xl border border-amber-200/60">
+                    Sanitized AC Cab
+                  </span>
                   <Link
                     to={`/booking?pickup=${encodeURIComponent(route.from_city)}&drop=${encodeURIComponent(route.to_city)}`}
-                    className="gold-btn px-4 py-2 rounded-xl text-xs font-bold uppercase shadow-md"
+                    className="gold-btn px-5 py-2.5 rounded-xl text-xs font-extrabold uppercase tracking-wider shadow-md"
                   >
                     Book Cab
                   </Link>
@@ -725,6 +727,17 @@ export default function HomePage() {
               </motion.div>
             ))}
           </motion.div>
+
+          {/* Explore All Routes CTA */}
+          <div className="text-center mt-12">
+            <Link 
+              to="/routes" 
+              className="inline-flex items-center gap-2 bg-slate-900 text-amber-400 hover:bg-amber-500 hover:text-slate-950 px-8 py-3.5 rounded-full text-xs sm:text-sm font-extrabold uppercase tracking-wider transition shadow-lg"
+            >
+              <span>Explore All 25+ Maharashtra Routes</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
