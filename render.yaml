@@ -1,0 +1,29 @@
+services:
+  # Backend Web Service on Render
+  - type: web
+    name: bosstours-backend
+    env: node
+    region: singapore
+    buildCommand: cd server && npm install
+    startCommand: cd server && npm start
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MONGODB_URI
+        sync: false
+
+  # Frontend Web Service on Render (Static Site or Node)
+  - type: web
+    name: bosstours-frontend
+    env: static
+    region: singapore
+    buildCommand: cd client && npm install && npm run build
+    staticPublishPath: client/dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

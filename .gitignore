@@ -1,0 +1,30 @@
+# Node dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Production build outputs
+client/dist/
+
+# SQLite Database local files
+server/data/
+*.db
+
+# Environment variables
+.env
+server/.env
+client/.env
+
+# Zip backups
+*.zip
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+
+# OS metadata
+.DS_Store
+Thumbs.db
