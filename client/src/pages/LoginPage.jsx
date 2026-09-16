@@ -32,53 +32,53 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="pt-28 pb-20 bg-dark-bg min-h-screen flex items-center justify-center px-4">
+    <div className="pt-28 pb-20 bg-slate-50 min-h-screen flex items-center justify-center px-4">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="glass-card w-full max-w-md p-8 sm:p-10 rounded-3xl border border-gold/30 shadow-2xl space-y-6"
+        className="bg-white w-full max-w-md p-8 sm:p-10 rounded-3xl border border-slate-200 shadow-2xl space-y-6"
       >
         <div className="text-center space-y-2">
-          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gold-light via-gold to-gold-dark flex items-center justify-center text-black font-extrabold mx-auto shadow-lg">
-            <Car className="w-6 h-6" />
+          <div className="w-12 h-12 rounded-2xl bg-amber-500 text-slate-950 flex items-center justify-center font-extrabold mx-auto shadow-md">
+            <Car className="w-6 h-6 text-slate-950" />
           </div>
-          <h1 className="font-serif text-3xl font-bold text-white">Welcome Back</h1>
-          <p className="text-xs text-gray-400">Sign in to manage your bookings & access VIP travel rates</p>
+          <h1 className="font-serif text-3xl font-extrabold text-slate-900">Welcome Back</h1>
+          <p className="text-xs text-slate-500 font-medium">Sign in to manage your bookings & access VIP travel rates</p>
         </div>
 
         {error && (
-          <div className="bg-red-950/80 border border-red-500/50 text-red-200 text-xs p-3 rounded-xl text-center">
+          <div className="bg-red-50 border border-red-200 text-red-600 text-xs p-3 rounded-xl text-center font-semibold">
             {error}
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-xs font-semibold text-gray-300 mb-1">Email Address</label>
+            <label className="block text-xs font-extrabold text-slate-700 mb-1">Email Address</label>
             <div className="relative">
-              <Mail className="w-4 h-4 text-gold absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <Mail className="w-4 h-4 text-amber-600 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 placeholder="name@example.com"
-                className="w-full bg-dark-card border border-gray-700 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:border-gold"
+                className="w-full bg-slate-50 border border-slate-300 rounded-xl pl-10 pr-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-amber-500 font-medium"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-300 mb-1">Password</label>
+            <label className="block text-xs font-extrabold text-slate-700 mb-1">Password</label>
             <div className="relative">
-              <Lock className="w-4 h-4 text-gold absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <Lock className="w-4 h-4 text-amber-600 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 placeholder="••••••••"
-                className="w-full bg-dark-card border border-gray-700 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:border-gold"
+                className="w-full bg-slate-50 border border-slate-300 rounded-xl pl-10 pr-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-amber-500 font-medium"
               />
             </div>
           </div>
@@ -92,9 +92,9 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <div className="text-center pt-4 border-t border-gray-800 text-xs text-gray-400">
+        <div className="text-center pt-4 border-t border-slate-100 text-xs text-slate-500 font-medium">
           Don't have an account?{' '}
-          <Link to="/register" className="text-gold font-bold hover:underline">
+          <Link to="/register" className="text-amber-600 font-bold hover:underline">
             Register Here
           </Link>
         </div>

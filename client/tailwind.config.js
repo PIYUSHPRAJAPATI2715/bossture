@@ -8,17 +8,22 @@ export default {
     extend: {
       colors: {
         gold: {
-          DEFAULT: '#d4af37',
-          light: '#f4e4a6',
-          dark: '#aa8c2c',
-          glow: 'rgba(212, 175, 55, 0.4)'
+          DEFAULT: '#d97706',
+          light: '#f59e0b',
+          dark: '#b45309',
+          glow: 'rgba(217, 119, 6, 0.25)'
+        },
+        royal: {
+          DEFAULT: '#1e293b',
+          dark: '#0f172a',
+          light: '#334155'
         },
         dark: {
-          bg: '#0a0a0a',
-          surface: '#121212',
-          card: '#181818',
-          border: 'rgba(212, 175, 55, 0.2)',
-          borderHover: 'rgba(212, 175, 55, 0.6)'
+          bg: '#f8fafc',
+          surface: '#ffffff',
+          card: '#ffffff',
+          border: '#e2e8f0',
+          borderHover: '#cbd5e1'
         }
       },
       fontFamily: {

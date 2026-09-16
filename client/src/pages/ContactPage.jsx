@@ -38,16 +38,16 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="pt-28 pb-20 bg-dark-bg min-h-screen">
+    <div className="pt-28 pb-20 bg-slate-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-bold text-gold uppercase tracking-widest">We Are Here To Help</span>
-          <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white mt-2 mb-4">
-            Contact <span className="text-gold">Boss Tours</span>
+          <span className="text-xs font-bold text-amber-600 uppercase tracking-widest">We Are Here To Help</span>
+          <h1 className="font-serif text-4xl sm:text-5xl font-extrabold text-slate-900 mt-2 mb-4">
+            Contact <span className="text-amber-600">Boss Tours</span>
           </h1>
-          <p className="text-gray-400 text-base">
+          <p className="text-slate-600 text-base leading-relaxed">
             Have questions about tour routes, custom pricing, or group bookings? Our 24/7 travel desk is at your service.
           </p>
         </div>
@@ -56,9 +56,9 @@ export default function ContactPage() {
           
           {/* Contact Details */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="glass-card p-8 rounded-3xl border border-gold/30 space-y-6">
-              <h3 className="font-serif text-2xl font-bold text-white">Get in Touch</h3>
-              <p className="text-sm text-gray-300">
+            <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-xl space-y-6">
+              <h3 className="font-serif text-2xl font-bold text-slate-900">Get in Touch</h3>
+              <p className="text-sm text-slate-600 leading-relaxed font-medium">
                 Call or message us directly for instant price quotes and booking confirmation.
               </p>
 
@@ -66,14 +66,14 @@ export default function ContactPage() {
                 <a
                   href="tel:+919272174699"
                   onClick={trackPhoneCall}
-                  className="flex items-center gap-4 bg-dark-card p-4 rounded-2xl border border-gray-800 hover:border-gold/40 transition group"
+                  className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-200 hover:border-amber-400 transition group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-gold/10 text-gold flex items-center justify-center shrink-0 border border-gold/30 group-hover:bg-gold group-hover:text-black">
+                  <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 border border-amber-200 group-hover:bg-amber-500 group-hover:text-slate-950">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs text-gray-400 block">Phone Hotline</span>
-                    <span className="text-white font-bold text-base group-hover:text-gold">+91 9272174699</span>
+                    <span className="text-xs text-slate-500 block uppercase font-semibold">Phone Hotline</span>
+                    <span className="text-slate-900 font-extrabold text-base group-hover:text-amber-600">+91 9272174699</span>
                   </div>
                 </a>
 
@@ -82,34 +82,34 @@ export default function ContactPage() {
                   target="_blank"
                   rel="noreferrer"
                   onClick={trackWhatsAppClick}
-                  className="flex items-center gap-4 bg-dark-card p-4 rounded-2xl border border-gray-800 hover:border-emerald-500/40 transition group"
+                  className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-200 hover:border-emerald-500 transition group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0 border border-emerald-500/30 group-hover:bg-emerald-500 group-hover:text-white">
+                  <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-200 group-hover:bg-emerald-500 group-hover:text-white">
                     <MessageCircle className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs text-gray-400 block">WhatsApp Chat</span>
-                    <span className="text-white font-bold text-base group-hover:text-emerald-400">+91 9272174699</span>
+                    <span className="text-xs text-slate-500 block uppercase font-semibold">WhatsApp Chat</span>
+                    <span className="text-slate-900 font-extrabold text-base group-hover:text-emerald-600">+91 9272174699</span>
                   </div>
                 </a>
 
-                <div className="flex items-center gap-4 bg-dark-card p-4 rounded-2xl border border-gray-800">
-                  <div className="w-12 h-12 rounded-xl bg-gold/10 text-gold flex items-center justify-center shrink-0 border border-gold/30">
+                <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                  <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 border border-amber-200">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs text-gray-400 block">Email Support</span>
-                    <span className="text-white font-medium text-sm">info@bosstoursandtravels.com</span>
+                    <span className="text-xs text-slate-500 block uppercase font-semibold">Email Support</span>
+                    <span className="text-slate-900 font-bold text-sm">info@bosstoursandtravels.com</span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 bg-dark-card p-4 rounded-2xl border border-gray-800">
-                  <div className="w-12 h-12 rounded-xl bg-gold/10 text-gold flex items-center justify-center shrink-0 border border-gold/30">
+                <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                  <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 border border-amber-200">
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs text-gray-400 block">Head Office</span>
-                    <span className="text-white font-medium text-xs">Main Highway Hub, Santacruz East, Mumbai, MH 400098</span>
+                    <span className="text-xs text-slate-500 block uppercase font-semibold">Head Office</span>
+                    <span className="text-slate-900 font-semibold text-xs">Main Highway Hub, Santacruz East, Mumbai, MH 400098</span>
                   </div>
                 </div>
               </div>
@@ -118,13 +118,13 @@ export default function ContactPage() {
 
           {/* Contact Form */}
           <div className="lg:col-span-7">
-            <div className="glass-card p-8 rounded-3xl border border-gold/30">
+            <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-xl">
               {submitted ? (
                 <div className="text-center py-12 space-y-4">
-                  <CheckCircle2 className="w-16 h-16 text-gold mx-auto" />
-                  <h3 className="font-serif text-2xl font-bold text-white">Message Sent!</h3>
-                  <p className="text-sm text-gray-300">
-                    Thank you for reaching out. Our dispatch executive will contact you at <strong className="text-gold">{formData.phone}</strong> within 15 minutes.
+                  <CheckCircle2 className="w-16 h-16 text-emerald-600 mx-auto" />
+                  <h3 className="font-serif text-2xl font-bold text-slate-900">Message Sent!</h3>
+                  <p className="text-sm text-slate-600 font-medium">
+                    Thank you for reaching out. Our dispatch executive will contact you at <strong className="text-amber-600">{formData.phone}</strong> within 15 minutes.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
@@ -135,17 +135,17 @@ export default function ContactPage() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
-                  <h3 className="font-serif text-2xl font-bold text-white mb-2">Send an Inquiry</h3>
+                  <h3 className="font-serif text-2xl font-bold text-slate-900 mb-2">Send an Inquiry</h3>
 
                   {errorMsg && (
-                    <div className="bg-red-950/80 border border-red-500/50 text-red-200 text-xs p-3 rounded-xl">
+                    <div className="bg-red-50 border border-red-200 text-red-700 text-xs p-3 rounded-xl font-medium">
                       {errorMsg}
                     </div>
                   )}
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-semibold text-gray-300 mb-1">Your Name</label>
+                      <label className="block text-xs font-extrabold text-slate-700 mb-1">Your Name</label>
                       <input
                         type="text"
                         name="name"
@@ -153,12 +153,12 @@ export default function ContactPage() {
                         onChange={handleChange}
                         required
                         placeholder="John Doe"
-                        className="w-full bg-dark-card border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold"
+                        className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-amber-500 font-medium"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-gray-300 mb-1">Phone Number</label>
+                      <label className="block text-xs font-extrabold text-slate-700 mb-1">Phone Number</label>
                       <input
                         type="tel"
                         name="phone"
@@ -166,31 +166,31 @@ export default function ContactPage() {
                         onChange={handleChange}
                         required
                         placeholder="+91 9876543210"
-                        className="w-full bg-dark-card border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold"
+                        className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-amber-500 font-medium"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-semibold text-gray-300 mb-1">Email (Optional)</label>
+                      <label className="block text-xs font-extrabold text-slate-700 mb-1">Email (Optional)</label>
                       <input
                         type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="john@example.com"
-                        className="w-full bg-dark-card border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold"
+                        className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-amber-500 font-medium"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-gray-300 mb-1">Service Interested In</label>
+                      <label className="block text-xs font-extrabold text-slate-700 mb-1">Service Interested In</label>
                       <select
                         name="service"
                         value={formData.service}
                         onChange={handleChange}
-                        className="w-full bg-dark-card border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold"
+                        className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-amber-500 font-medium"
                       >
                         <option>Outstation Taxi</option>
                         <option>Spiritual Tour Package</option>
@@ -203,7 +203,7 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-gray-300 mb-1">Message / Details</label>
+                    <label className="block text-xs font-extrabold text-slate-700 mb-1">Message / Details</label>
                     <textarea
                       name="message"
                       value={formData.message}
@@ -211,7 +211,7 @@ export default function ContactPage() {
                       required
                       rows={4}
                       placeholder="Tell us about your travel plans, number of passengers, dates..."
-                      className="w-full bg-dark-card border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold"
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm text-slate-900 focus:outline-none focus:border-amber-500 font-medium"
                     />
                   </div>
 

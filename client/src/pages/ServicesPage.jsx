@@ -44,7 +44,7 @@ export default function ServicesPage() {
   ];
 
   return (
-    <div className="pt-28 pb-20 bg-dark-bg min-h-screen">
+    <div className="pt-28 pb-20 bg-slate-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -54,11 +54,11 @@ export default function ServicesPage() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <span className="text-xs font-bold text-gold uppercase tracking-widest">World Class Travel</span>
-          <h1 className="font-serif text-3xl sm:text-5xl font-bold text-white mt-2 mb-4">
-            Our Premium <span className="text-gold">Services</span>
+          <span className="text-xs font-bold text-amber-600 uppercase tracking-widest">World Class Travel</span>
+          <h1 className="font-serif text-3xl sm:text-5xl font-extrabold text-slate-900 mt-2 mb-4">
+            Our Premium <span className="text-amber-600">Services</span>
           </h1>
-          <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
             From seamless outstation cab rides to bespoke spiritual yatras and luxury corporate travel, Boss Tours & Travels provides top-notch transport solutions.
           </p>
         </motion.div>
@@ -74,19 +74,19 @@ export default function ServicesPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 whileHover={{ y: -6 }}
-                className="glass-card p-6 sm:p-8 rounded-2xl border border-gold/20 flex flex-col justify-between hover:border-gold/50 transition-all duration-300 shadow-xl"
+                className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 flex flex-col justify-between hover:border-amber-400 transition-all duration-300 shadow-sm hover:shadow-xl"
               >
                 <div>
-                  <div className="w-14 h-14 rounded-2xl bg-gold/10 border border-gold/30 text-gold flex items-center justify-center mb-6 shadow-inner">
+                  <div className="w-14 h-14 rounded-2xl bg-amber-50 border border-amber-200 text-amber-600 flex items-center justify-center mb-6 shadow-sm">
                     <Icon className="w-7 h-7" />
                   </div>
-                  <h3 className="font-serif text-xl font-bold text-white mb-3">{svc.title}</h3>
-                  <p className="text-xs sm:text-sm text-gray-400 leading-relaxed mb-6">{svc.description}</p>
+                  <h3 className="font-serif text-xl font-bold text-slate-900 mb-3">{svc.title}</h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">{svc.description}</p>
                   
                   <ul className="space-y-2 mb-6">
                     {svc.features.map((feat, fidx) => (
-                      <li key={fidx} className="text-xs text-gray-300 flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
+                      <li key={fidx} className="text-xs text-slate-700 flex items-center gap-2 font-medium">
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" />
                         {feat}
                       </li>
                     ))}
@@ -95,7 +95,7 @@ export default function ServicesPage() {
 
                 <Link
                   to="/booking"
-                  className="gold-btn w-full py-3 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-md hover:shadow-gold/20"
+                  className="gold-btn w-full py-3 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-md"
                 >
                   Book Service <ArrowRight className="w-4 h-4" />
                 </Link>
