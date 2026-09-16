@@ -96,7 +96,7 @@ export default function AdminDashboard() {
       console.warn('Server endpoint upload fallback to canvas compression:', uploadErr);
     }
 
-    // Fallback: Client-Side HTML5 Canvas Compression to ~80KB JPEG
+    // Client-Side HTML5 Canvas Compression to ultra-lightweight ~25KB JPEG
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = (event) => {
@@ -104,7 +104,7 @@ export default function AdminDashboard() {
       img.src = event.target.result;
       img.onload = () => {
         const canvas = document.createElement('canvas');
-        const MAX_DIM = 1000;
+        const MAX_DIM = 600;
         let width = img.width;
         let height = img.height;
 
@@ -120,11 +120,11 @@ export default function AdminDashboard() {
           }
         }
 
-        canvas.width = width;
-        canvas.height = height;
+        canvas.width = Math.round(width);
+        canvas.height = Math.round(height);
         const ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0, width, height);
-        const compressedUrl = canvas.toDataURL('image/jpeg', 0.75);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        const compressedUrl = canvas.toDataURL('image/jpeg', 0.6);
         onComplete(compressedUrl);
       };
     };
