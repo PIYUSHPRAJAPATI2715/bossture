@@ -1,7 +1,7 @@
 // Google Ads & Analytics Conversion Tracking Helper
 export const GOOGLE_ADS_CONFIG = {
-  // Replace these with your actual Google Ads ID & Conversion Labels from Google Ads Manager
-  ADS_CONVERSION_ID: 'AW-123456789', 
+  // Google Analytics 4 & Google Ads Tag ID
+  ADS_CONVERSION_ID: 'G-YR1Z6SDFT8', 
   CONVERSION_LABELS: {
     PHONE_CALL: 'call_click_label',
     WHATSAPP: 'whatsapp_click_label',
