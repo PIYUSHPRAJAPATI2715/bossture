@@ -95,15 +95,22 @@ export default function Navbar() {
 
           {/* Right Desktop Actions */}
           <div className="hidden lg:flex items-center gap-4">
+            {/* Mansi-style Call Support Pill */}
             <motion.a
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               href="tel:+919272174699"
               onClick={handleCallClick}
-              className="flex items-center gap-2 text-xs font-bold uppercase text-gold bg-gold/10 px-4 py-2.5 rounded-full border border-gold/40 hover:bg-gold hover:text-black transition-all shadow-md hover:shadow-gold/20"
+              className="flex items-center gap-2.5 bg-gold/10 hover:bg-gold hover:text-black text-gold px-4 py-2 rounded-full border border-gold/40 transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.15)] group"
             >
-              <PhoneCall className="w-3.5 h-3.5" />
-              +91 9272174699
+              <div className="relative flex items-center justify-center">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-75"></span>
+                <PhoneCall className="w-4 h-4 text-gold group-hover:text-black relative z-10" />
+              </div>
+              <div className="text-left">
+                <span className="text-[10px] uppercase tracking-wider block font-semibold text-gray-400 group-hover:text-black/80 leading-none">24/7 Hotline</span>
+                <span className="text-xs font-extrabold tracking-wide font-mono">+91 9272174699</span>
+              </div>
             </motion.a>
 
             {user ? (
@@ -136,13 +143,13 @@ export default function Navbar() {
               <div className="flex items-center gap-3">
                 <Link
                   to="/login"
-                  className="text-sm font-medium text-gray-300 hover:text-gold transition px-3 py-1.5"
+                  className="text-sm font-semibold text-gray-200 hover:text-gold transition px-3 py-1.5"
                 >
                   Sign In
                 </Link>
                 <Link
                   to="/register"
-                  className="gold-btn text-xs uppercase px-4 py-2.5 rounded-full shadow-lg"
+                  className="gold-btn text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-full shadow-lg"
                 >
                   Register
                 </Link>
