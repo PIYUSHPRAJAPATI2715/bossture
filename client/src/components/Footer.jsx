@@ -12,8 +12,8 @@ export default function Footer() {
           {/* Brand Info */}
           <div className="space-y-4">
             <Link to="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gold-light via-gold to-gold-dark flex items-center justify-center text-black font-extrabold text-lg">
-                <Car className="w-5 h-5" />
+              <div className="w-11 h-11 rounded-full border-2 border-gold overflow-hidden bg-slate-950 flex items-center justify-center shrink-0 shadow-lg shadow-amber-500/10">
+                <img src="/images/logo.png" alt="Boss Tours Logo" className="w-full h-full object-cover" />
               </div>
               <span className="font-serif text-2xl font-bold tracking-wider text-white">
                 BOSS <span className="text-gold">TOURS</span>

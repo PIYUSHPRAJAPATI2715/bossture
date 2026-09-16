@@ -4,6 +4,7 @@ import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import FloatingButtons from './components/FloatingButtons';
+import Preloader from './components/Preloader';
 
 import HomePage from './pages/HomePage';
 import ServicesPage from './pages/ServicesPage';
@@ -23,7 +24,8 @@ function AppLayout() {
   const isAdminRoute = location.pathname.startsWith('/admin');
 
   return (
-    <div className="flex flex-col min-h-screen bg-dark-bg text-gray-200 antialiased selection:bg-gold selection:text-black">
+    <div className="flex flex-col min-h-screen bg-slate-50 text-slate-800 antialiased selection:bg-amber-500 selection:text-black">
+      <Preloader />
       {/* Hide website navbar on admin panel */}
       {!isAdminRoute && <Navbar />}
 

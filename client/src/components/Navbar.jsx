@@ -56,9 +56,9 @@ export default function Navbar() {
             <motion.div 
               whileHover={{ rotate: 10, scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 flex items-center justify-center text-slate-950 font-extrabold text-xl shadow-md shadow-amber-500/20"
+              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border-2 border-amber-500 shadow-md shadow-amber-500/20 overflow-hidden bg-slate-950 flex items-center justify-center shrink-0"
             >
-              <Car className="w-5 h-5 sm:w-6 sm:h-6 text-slate-950" />
+              <img src="/images/logo.png" alt="Boss Tours & Travels Logo" className="w-full h-full object-cover" />
             </motion.div>
             <div>
               <span className="font-serif text-xl sm:text-2xl font-extrabold tracking-wider text-slate-900 flex items-center gap-1">
