@@ -252,11 +252,11 @@ export default function BookingPage() {
                       ))}
                       {cars.length === 0 && (
                         <>
-                          <option>Swift Dzire (4+1 AC)</option>
-                          <option>Maruti Ertiga (6+1 AC)</option>
-                          <option>Toyota Innova Crysta (7 Seater)</option>
-                          <option>Tempo Traveller (13/17 Seater)</option>
-                          <option>Boss Luxury Fleet</option>
+                          <option value="Swift Dzire / Etios">Swift Dzire / Etios (₹13/km)</option>
+                          <option value="Maruti Ertiga / XL6">Maruti Ertiga / XL6 (₹16/km)</option>
+                          <option value="Toyota Innova Crysta">Toyota Innova Crysta (₹20/km)</option>
+                          <option value="Tempo Traveller">Tempo Traveller (₹28/km)</option>
+                          <option value="Luxury Bus / Coach">Luxury Bus / Coach (Starts ₹45/km)</option>
                         </>
                       )}
                     </select>

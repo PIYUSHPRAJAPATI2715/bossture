@@ -266,10 +266,11 @@ export default function HomePage() {
                       onChange={(e) => setSelectedCar(e.target.value)}
                       className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-amber-500 focus:bg-white font-medium"
                     >
-                      <option>Swift Dzire / Etios (Sedan)</option>
-                      <option>Ertiga / XL6 (SUV 6+1)</option>
-                      <option>Innova Crysta (Luxury SUV)</option>
-                      <option>Tempo Traveller (13/17 Seater)</option>
+                      <option value="Swift Dzire / Etios">Swift Dzire (₹13/km)</option>
+                      <option value="Maruti Ertiga / XL6">Ertiga / XL6 (₹16/km)</option>
+                      <option value="Toyota Innova Crysta">Innova Crysta (₹20/km)</option>
+                      <option value="Tempo Traveller">Tempo Traveller (₹28/km)</option>
+                      <option value="Luxury Bus / Coach">Luxury Bus (Starts ₹45/km)</option>
                     </select>
                   </div>
                 </motion.div>

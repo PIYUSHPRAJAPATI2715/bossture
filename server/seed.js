@@ -16,14 +16,14 @@ async function seed() {
     (2, 'Rahul Sharma', 'rahul@example.com', ?, '+91 9876543210', 'user')
   `, [adminPassword, userPassword]);
 
-  // 2. Seed Fleet Cars
+  // 2. Seed Fleet Cars with Updated Rates & Images
   await db.run(`DELETE FROM cars`);
   const carsData = [
     {
       name: 'Swift Dzire / Etios',
       type: 'Sedan',
       capacity: '4+1 Seater AC',
-      price_per_km: 12,
+      price_per_km: 13,
       base_price: 2500,
       image: '/images/fleet-sedan.jpg',
       specs: JSON.stringify(['4 Passengers', '2 Bags', 'Air Conditioned', 'Clean & Sanitized', 'Bluetooth Music']),
@@ -33,7 +33,7 @@ async function seed() {
       name: 'Maruti Ertiga / XL6',
       type: 'SUV',
       capacity: '6+1 Seater AC',
-      price_per_km: 15,
+      price_per_km: 16,
       base_price: 3500,
       image: '/images/fleet-ertiga.jpg',
       specs: JSON.stringify(['6 Passengers', '4 Bags', 'Dual AC', 'Pushback Seats', 'Spacious Boot']),
@@ -43,7 +43,7 @@ async function seed() {
       name: 'Toyota Innova Crysta',
       type: 'Premium SUV',
       capacity: '7 Seater Premium',
-      price_per_km: 18,
+      price_per_km: 20,
       base_price: 4500,
       image: '/images/fleet-innova.jpg',
       specs: JSON.stringify(['7 Passengers', '5 Bags', 'Rear AC Vents', 'Reclining Seats', 'Captain Seats']),
@@ -53,20 +53,20 @@ async function seed() {
       name: 'Tempo Traveller',
       type: 'Mini Bus',
       capacity: '13/17/20 Seater',
-      price_per_km: 24,
+      price_per_km: 28,
       base_price: 6500,
       image: '/images/fleet-traveller.jpg',
       specs: JSON.stringify(['13-20 Passengers', 'Ample Luggage', 'High Roof AC', 'LCD Screen', 'Recliner Seats']),
       is_available: 1
     },
     {
-      name: 'Boss Luxury Fleet',
-      type: 'Luxury',
-      capacity: 'VIP Executive',
-      price_per_km: 35,
-      base_price: 9500,
+      name: 'Luxury Bus / Coach',
+      type: 'Luxury Bus',
+      capacity: '32/45/50 Seater Coach',
+      price_per_km: 45,
+      base_price: 12000,
       image: '/images/fleet-luxury.jpg',
-      specs: JSON.stringify(['4 Passengers', 'VIP Interior', 'Chauffeur in Uniform', 'Bottled Water', 'Premium Audio']),
+      specs: JSON.stringify(['32-50 Passengers', 'Luxury Reclining Seats', 'Air Conditioned', 'PA Sound System', 'Large Luggage Boot']),
       is_available: 1
     }
   ];
