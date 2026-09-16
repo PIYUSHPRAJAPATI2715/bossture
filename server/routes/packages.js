@@ -28,26 +28,29 @@ router.get('/', async (req, res) => {
 router.post('/', authenticateToken, requireAdmin, async (req, res) => {
   try {
     const { title, category, duration, price, badge, image, description, highlights } = req.body;
-    if (!title || !category || !duration || !price) {
-      return res.status(400).json({ error: 'Title, category, duration, and price are required' });
+    if (!title || !category || !duration) {
+      return res.status(400).json({ error: 'Title, category, and duration are required' });
     }
+
+    const numPrice = Number(price) || 0;
 
     if (isMongo()) {
       const newPkg = await Package.create({
-        title, category, duration, price, badge: badge || '', image: image || '/images/package-1.jpg', description: description || '', highlights: highlights || []
+        title, category, duration, price: numPrice, badge: badge || '', image: image || '/images/package-1.jpg', description: description || '', highlights: highlights || []
       });
       return res.status(201).json({ message: 'Package created successfully', package: { id: newPkg._id, ...newPkg._doc } });
     } else {
       const db = await getDB();
       const result = await db.run(
         `INSERT INTO packages (title, category, duration, price, badge, image, description, highlights) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-        [title, category, duration, price, badge || '', image || '/images/package-1.jpg', description || '', JSON.stringify(highlights || [])]
+        [title, category, duration, numPrice, badge || '', image || '/images/package-1.jpg', description || '', JSON.stringify(highlights || [])]
       );
       const newPkg = await db.get('SELECT * FROM packages WHERE id = ?', [result.lastID]);
       return res.status(201).json({ message: 'Package created successfully', package: { ...newPkg, highlights: newPkg.highlights ? JSON.parse(newPkg.highlights) : [] } });
     }
   } catch (err) {
-    res.status(500).json({ error: 'Failed to add package' });
+    console.error('Add package error:', err);
+    res.status(500).json({ error: err.message || 'Failed to add package' });
   }
 });
 
@@ -55,21 +58,24 @@ router.post('/', authenticateToken, requireAdmin, async (req, res) => {
 router.put('/:id', authenticateToken, requireAdmin, async (req, res) => {
   try {
     const { title, category, duration, price, badge, image, description, highlights } = req.body;
+    const numPrice = price !== undefined && price !== null && price !== '' ? Number(price) : 0;
+
     if (isMongo()) {
-      const pkg = await Package.findByIdAndUpdate(req.params.id, { title, category, duration, price, badge, image, description, highlights }, { new: true });
+      const pkg = await Package.findByIdAndUpdate(req.params.id, { title, category, duration, price: numPrice, badge, image, description, highlights }, { new: true });
       if (!pkg) return res.status(404).json({ error: 'Package not found' });
       return res.json({ message: 'Package updated successfully', package: { id: pkg._id, ...pkg._doc } });
     } else {
       const db = await getDB();
       await db.run(
         `UPDATE packages SET title = COALESCE(?, title), category = COALESCE(?, category), duration = COALESCE(?, duration), price = COALESCE(?, price), badge = COALESCE(?, badge), image = COALESCE(?, image), description = COALESCE(?, description), highlights = COALESCE(?, highlights) WHERE id = ?`,
-        [title, category, duration, price, badge, image, description, highlights ? JSON.stringify(highlights) : undefined, req.params.id]
+        [title, category, duration, numPrice, badge, image, description, highlights ? JSON.stringify(highlights) : undefined, req.params.id]
       );
       const updatedPkg = await db.get('SELECT * FROM packages WHERE id = ?', [req.params.id]);
       return res.json({ message: 'Package updated successfully', package: { ...updatedPkg, highlights: updatedPkg.highlights ? JSON.parse(updatedPkg.highlights) : [] } });
     }
   } catch (err) {
-    res.status(500).json({ error: 'Failed to update package' });
+    console.error('Update package error:', err);
+    res.status(500).json({ error: err.message || 'Failed to update package' });
   }
 });
 

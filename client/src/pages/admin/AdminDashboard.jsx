@@ -73,18 +73,72 @@ export default function AdminDashboard() {
     }
   };
 
-  // --- FILE UPLOAD HANDLERS ---
+  // --- FILE UPLOAD HANDLERS WITH CANVAS COMPRESSION & BACKEND UPLOAD ---
+  const compressAndProcessImage = async (file, onComplete) => {
+    try {
+      const token = localStorage.getItem('token');
+      const formData = new FormData();
+      formData.append('image', file);
+
+      const res = await axios.post('/api/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: token ? `Bearer ${token}` : ''
+        }
+      });
+
+      if (res.data && (res.data.url || res.data.filename)) {
+        const finalUrl = res.data.url || `/images/${res.data.filename}`;
+        onComplete(finalUrl);
+        return;
+      }
+    } catch (uploadErr) {
+      console.warn('Server endpoint upload fallback to canvas compression:', uploadErr);
+    }
+
+    // Fallback: Client-Side HTML5 Canvas Compression to ~80KB JPEG
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (event) => {
+      const img = new Image();
+      img.src = event.target.result;
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const MAX_DIM = 1000;
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+          if (width > MAX_DIM) {
+            height *= MAX_DIM / width;
+            width = MAX_DIM;
+          }
+        } else {
+          if (height > MAX_DIM) {
+            width *= MAX_DIM / height;
+            height = MAX_DIM;
+          }
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+        const compressedUrl = canvas.toDataURL('image/jpeg', 0.75);
+        onComplete(compressedUrl);
+      };
+    };
+  };
+
   const handleCarFileUpload = (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
     setUploadingCarImage(true);
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setCarForm({ ...carForm, image: reader.result });
+    compressAndProcessImage(file, (imgUrl) => {
+      setCarForm((prev) => ({ ...prev, image: imgUrl }));
       setUploadingCarImage(false);
-    };
-    reader.readAsDataURL(file);
+    });
   };
 
   const handlePackageFileUpload = (e) => {
@@ -92,12 +146,10 @@ export default function AdminDashboard() {
     if (!file) return;
 
     setUploadingPackageImage(true);
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setPackageForm({ ...packageForm, image: reader.result });
+    compressAndProcessImage(file, (imgUrl) => {
+      setPackageForm((prev) => ({ ...prev, image: imgUrl }));
       setUploadingPackageImage(false);
-    };
-    reader.readAsDataURL(file);
+    });
   };
 
   // --- BOOKING ACTIONS ---
