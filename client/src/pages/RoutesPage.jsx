@@ -13,8 +13,11 @@ export default function RoutesPage() {
   useEffect(() => {
     axios.get('/api/routes')
       .then(res => {
-        if (res.data && res.data.length > 0) {
-          setRoutes(res.data);
+        if (res.data && Array.isArray(res.data) && res.data.length > 0) {
+          const map = new Map();
+          maharashtraRoutes.forEach(r => map.set(`${r.from_city.toLowerCase()}-${r.to_city.toLowerCase()}`, r));
+          res.data.forEach(r => map.set(`${r.from_city.toLowerCase()}-${r.to_city.toLowerCase()}`, r));
+          setRoutes(Array.from(map.values()));
         }
       })
       .catch(err => {

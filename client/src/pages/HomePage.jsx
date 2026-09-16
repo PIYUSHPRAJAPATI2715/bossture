@@ -56,7 +56,12 @@ export default function HomePage() {
     axios.get('/api/packages').then(res => setPackages(res.data.slice(0, 3))).catch(() => {});
     axios.get('/api/cars').then(res => setCars(res.data)).catch(() => {});
     axios.get('/api/routes').then(res => {
-      if (res.data && res.data.length > 0) setRoutes(res.data);
+      if (res.data && Array.isArray(res.data) && res.data.length > 0) {
+        const map = new Map();
+        maharashtraRoutes.forEach(r => map.set(`${r.from_city.toLowerCase()}-${r.to_city.toLowerCase()}`, r));
+        res.data.forEach(r => map.set(`${r.from_city.toLowerCase()}-${r.to_city.toLowerCase()}`, r));
+        setRoutes(Array.from(map.values()));
+      }
     }).catch(() => {});
   }, []);
 
@@ -685,7 +690,7 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            {routes.slice(0, 12).map((route) => (
+            {routes.slice(0, 21).map((route) => (
               <motion.div
                 key={route.id || route.to_city}
                 variants={itemVariants}
