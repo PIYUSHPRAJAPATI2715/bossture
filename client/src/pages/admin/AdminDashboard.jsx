@@ -78,7 +78,6 @@ export default function AdminDashboard() {
     const file = e.target.files[0];
     if (!file) return;
 
-    // Convert file directly to Data URL (Base64) for instant, 100% reliable display anywhere
     setUploadingCarImage(true);
     const reader = new FileReader();
     reader.onloadend = () => {
@@ -140,7 +139,8 @@ export default function AdminDashboard() {
       setEditingCar(null);
       loadAllData();
     } catch (err) {
-      alert('Failed to save car details');
+      console.error('Save car error:', err);
+      alert(err.response?.data?.error || 'Failed to save car details');
     }
   };
 
@@ -173,7 +173,8 @@ export default function AdminDashboard() {
       setEditingPackage(null);
       loadAllData();
     } catch (err) {
-      alert('Failed to save package');
+      console.error('Save package error:', err);
+      alert(err.response?.data?.error || 'Failed to save package');
     }
   };
 

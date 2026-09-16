@@ -10,9 +10,10 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
+// Middleware with 50MB payload limit for Base64 image uploads & rich data
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 // Serve static image assets from root directory and client public directory
 app.use('/images', express.static(path.join(__dirname, '..')));
