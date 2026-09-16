@@ -3,13 +3,22 @@
   "version": "1.0.0",
   "description": "Full-Stack Boss Tours & Travels Website & Dynamic Admin Panel",
   "scripts": {
+    "postinstall": "npm --prefix server install && npm --prefix client install",
     "server": "cd server && npm start",
     "server:dev": "cd server && npm run dev",
     "client": "cd client && npm run dev",
     "build": "cd client && npm run build",
     "seed": "cd server && npm run seed"
   },
-  "keywords": ["bosstours", "react", "express", "sqlite", "car-rental", "tour-packages"],
+  "keywords": [
+    "bosstours",
+    "react",
+    "express",
+    "sqlite",
+    "mongodb",
+    "car-rental",
+    "tour-packages"
+  ],
   "author": "Boss Tours & Travels",
   "license": "ISC"
 }

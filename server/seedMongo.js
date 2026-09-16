@@ -1,3 +1,8 @@
+const dns = require('dns');
+try {
+  dns.setServers(['8.8.8.8', '1.1.1.1']);
+} catch (e) {}
+
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const dotenv = require('dotenv');
@@ -14,9 +19,11 @@ const ContactInquiry = require('./models/ContactInquiry');
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/bosstours';
 
 async function seedMongo() {
-  console.log(`Connecting to MongoDB: ${MONGODB_URI}`);
-  await mongoose.connect(MONGODB_URI);
-  console.log('Connected to MongoDB successfully!');
+  console.log(`Connecting to MongoDB Atlas...`);
+  await mongoose.connect(MONGODB_URI, {
+    serverSelectionTimeoutMS: 15000
+  });
+  console.log('✅ Connected to MongoDB Atlas successfully!');
 
   // 1. Seed Users
   const adminPassword = await bcrypt.hash('admin123', 10);
@@ -229,7 +236,7 @@ async function seedMongo() {
   ]);
   console.log('Contact Inquiries seeded');
 
-  console.log('✅ MongoDB database seeded successfully!');
+  console.log('🎉 MongoDB database seeded successfully!');
   await mongoose.disconnect();
 }
 
