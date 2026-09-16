@@ -33,43 +33,56 @@ export default function PackagesPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto mb-12"
+        >
           <span className="text-xs font-bold text-gold uppercase tracking-widest">Handcrafted Experiences</span>
-          <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white mt-2 mb-4">
+          <h1 className="font-serif text-3xl sm:text-5xl font-bold text-white mt-2 mb-4">
             Exclusive <span className="text-gold">Tour Packages</span>
           </h1>
-          <p className="text-gray-400 text-base">
+          <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
             Explore carefully curated travel packages designed for supreme luxury, comfort, and memorable family adventures.
           </p>
-        </div>
+        </motion.div>
 
         {/* Category Filters */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-12"
+        >
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase transition-all ${
+              className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase transition-all duration-300 ${
                 activeCategory === cat
-                  ? 'gold-btn shadow-lg'
+                  ? 'gold-btn shadow-lg scale-105'
                   : 'bg-dark-card text-gray-400 border border-gray-800 hover:border-gold/40 hover:text-white'
               }`}
             >
               {cat}
             </button>
           ))}
-        </div>
+        </motion.div>
 
         {/* Loading State */}
         {loading ? (
-          <div className="text-center py-20 text-gold text-lg">Loading packages...</div>
+          <div className="text-center py-20 text-gold text-lg font-serif">Loading luxury packages...</div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredPackages.map((pkg) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {filteredPackages.map((pkg, idx) => (
               <motion.div
                 key={pkg.id}
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
                 whileHover={{ y: -6 }}
-                className="glass-card rounded-2xl overflow-hidden border border-gold/20 flex flex-col justify-between"
+                className="glass-card rounded-2xl overflow-hidden border border-gold/20 flex flex-col justify-between hover:border-gold/50 transition-all duration-300 shadow-xl"
               >
                 <div>
                   <div className="relative h-60 overflow-hidden">

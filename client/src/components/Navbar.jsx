@@ -1,14 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
-import { Menu, X, Car, User, LogOut, Shield, Compass, PhoneCall } from 'lucide-react';
+import { Menu, X, Car, User, LogOut, Shield, PhoneCall, Sparkles } from 'lucide-react';
 import { trackPhoneCall } from '../config/googleAds';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { user, isAdmin, logout } = useAuth();
-  const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
 
   const handleCallClick = () => {
     trackPhoneCall();
@@ -27,32 +41,42 @@ export default function Navbar() {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-dark-bg/90 backdrop-blur-md border-b border-gold/20 transition-all duration-300">
+    <nav 
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        scrolled 
+          ? 'bg-dark-bg/95 backdrop-blur-xl border-b border-gold/30 shadow-2xl py-3' 
+          : 'bg-gradient-to-b from-black/90 via-dark-bg/80 to-transparent py-4'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-14 sm:h-16">
           
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-11 h-11 rounded-full bg-gradient-to-br from-gold-light via-gold to-gold-dark flex items-center justify-center text-black font-extrabold text-xl shadow-lg group-hover:scale-105 transition-transform">
-              <Car className="w-6 h-6" />
-            </div>
+          {/* Brand Logo */}
+          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group">
+            <motion.div 
+              whileHover={{ rotate: 10, scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-br from-gold-light via-gold to-gold-dark flex items-center justify-center text-black font-extrabold text-xl shadow-lg shadow-gold/20"
+            >
+              <Car className="w-5 h-5 sm:w-6 sm:h-6" />
+            </motion.div>
             <div>
-              <span className="font-serif text-2xl font-bold tracking-wider text-white">
+              <span className="font-serif text-xl sm:text-2xl font-bold tracking-wider text-white flex items-center gap-1">
                 BOSS <span className="text-gold">TOURS</span>
               </span>
-              <p className="text-[10px] text-gray-400 tracking-widest uppercase -mt-1">
-                Luxury Experience
+              <p className="text-[9px] sm:text-[10px] text-gray-400 tracking-widest uppercase -mt-1 font-semibold">
+                Luxury Travel India
               </p>
             </div>
           </Link>
 
           {/* Desktop Nav Links */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-7">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-sm font-medium tracking-wide transition-colors relative py-1 ${
+                className={`text-sm font-medium tracking-wide transition-all relative py-1.5 ${
                   isActive(link.path)
                     ? 'text-gold font-semibold'
                     : 'text-gray-300 hover:text-gold'
@@ -60,29 +84,34 @@ export default function Navbar() {
               >
                 {link.name}
                 {isActive(link.path) && (
-                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-gold rounded-full" />
+                  <motion.span
+                    layoutId="activeNavIndicator"
+                    className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-gold-light to-gold rounded-full shadow-[0_0_8px_rgba(212,175,55,0.8)]"
+                  />
                 )}
               </Link>
             ))}
           </div>
 
-          {/* Right Action & User Controls */}
+          {/* Right Desktop Actions */}
           <div className="hidden lg:flex items-center gap-4">
-            <a
+            <motion.a
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
               href="tel:+919272174699"
               onClick={handleCallClick}
-              className="flex items-center gap-2 text-xs font-semibold uppercase text-gold bg-gold/10 px-4 py-2 rounded-full border border-gold/30 hover:bg-gold hover:text-black transition-all"
+              className="flex items-center gap-2 text-xs font-bold uppercase text-gold bg-gold/10 px-4 py-2.5 rounded-full border border-gold/40 hover:bg-gold hover:text-black transition-all shadow-md hover:shadow-gold/20"
             >
-              <PhoneCall className="w-4 h-4" />
+              <PhoneCall className="w-3.5 h-3.5" />
               +91 9272174699
-            </a>
+            </motion.a>
 
             {user ? (
               <div className="flex items-center gap-3 border-l border-gray-800 pl-4">
                 {isAdmin && (
                   <Link
                     to="/admin"
-                    className="flex items-center gap-1.5 text-xs bg-gold/20 text-gold px-3 py-1.5 rounded-md border border-gold/40 hover:bg-gold hover:text-black font-semibold transition"
+                    className="flex items-center gap-1.5 text-xs bg-gold/20 text-gold px-3.5 py-2 rounded-xl border border-gold/40 hover:bg-gold hover:text-black font-semibold transition"
                   >
                     <Shield className="w-3.5 h-3.5" />
                     Admin
@@ -90,7 +119,7 @@ export default function Navbar() {
                 )}
                 <Link
                   to="/profile"
-                  className="flex items-center gap-2 text-sm text-gray-200 hover:text-gold transition font-medium"
+                  className="flex items-center gap-2 text-sm text-gray-200 hover:text-gold transition font-semibold"
                 >
                   <User className="w-4 h-4 text-gold" />
                   {user.name.split(' ')[0]}
@@ -98,7 +127,7 @@ export default function Navbar() {
                 <button
                   onClick={logout}
                   title="Logout"
-                  className="text-gray-400 hover:text-red-400 p-1 transition"
+                  className="text-gray-400 hover:text-red-400 p-1.5 transition"
                 >
                   <LogOut className="w-4 h-4" />
                 </button>
@@ -113,7 +142,7 @@ export default function Navbar() {
                 </Link>
                 <Link
                   to="/register"
-                  className="gold-btn text-xs uppercase px-4 py-2 rounded-full shadow-md"
+                  className="gold-btn text-xs uppercase px-4 py-2.5 rounded-full shadow-lg"
                 >
                   Register
                 </Link>
@@ -121,91 +150,146 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="lg:hidden flex items-center gap-3">
-            <button
+          {/* Mobile Menu Toggle Button */}
+          <div className="lg:hidden flex items-center gap-2">
+            <a
+              href="tel:+919272174699"
+              onClick={handleCallClick}
+              className="p-2.5 rounded-xl bg-gold/10 text-gold border border-gold/30 text-xs font-bold flex items-center gap-1"
+            >
+              <PhoneCall className="w-4 h-4" />
+            </a>
+            
+            <motion.button
+              whileTap={{ scale: 0.9 }}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-gold p-2 rounded-lg bg-dark-card border border-gold/20"
+              aria-label="Toggle Navigation Menu"
+              className="text-gold p-2.5 rounded-xl bg-dark-card border border-gold/30 shadow-lg"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden bg-dark-card border-b border-gold/20 px-4 pt-4 pb-6 space-y-3">
-          {navLinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
+      {/* Animated Mobile Nav Menu Drawer */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               onClick={() => setMobileMenuOpen(false)}
-              className={`block py-2 text-base font-medium ${
-                isActive(link.path) ? 'text-gold font-bold' : 'text-gray-300'
-              }`}
-            >
-              {link.name}
-            </Link>
-          ))}
+              className="fixed inset-0 bg-black/80 backdrop-blur-md z-40 lg:hidden"
+            />
 
-          <div className="pt-4 border-t border-gray-800 flex flex-col gap-3">
-            <a
-              href="tel:+919272174699"
-              onClick={handleCallClick}
-              className="flex items-center justify-center gap-2 text-sm font-bold text-gold bg-gold/10 py-2.5 rounded-lg border border-gold/30"
+            {/* Slide Down Menu Content */}
+            <motion.div
+              initial={{ opacity: 0, y: -20, scaleY: 0.95 }}
+              animate={{ opacity: 1, y: 0, scaleY: 1 }}
+              exit={{ opacity: 0, y: -20, scaleY: 0.95 }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+              className="fixed top-[70px] left-4 right-4 z-50 bg-dark-card/95 border border-gold/30 rounded-3xl p-6 shadow-2xl shadow-gold/10 backdrop-blur-2xl lg:hidden overflow-hidden max-h-[85vh] overflow-y-auto space-y-4"
             >
-              <PhoneCall className="w-4 h-4" /> Call: +91 9272174699
-            </a>
-
-            {user ? (
-              <div className="flex items-center justify-between pt-2">
-                <div className="flex items-center gap-2">
-                  <User className="w-5 h-5 text-gold" />
-                  <span className="text-sm font-medium text-white">{user.name}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  {isAdmin && (
-                    <Link
-                      to="/admin"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="text-xs bg-gold/20 text-gold px-3 py-1 rounded"
-                    >
-                      Admin
-                    </Link>
-                  )}
-                  <button
-                    onClick={() => {
-                      logout();
-                      setMobileMenuOpen(false);
-                    }}
-                    className="text-xs text-red-400 px-2 py-1"
+              <div className="grid grid-cols-2 gap-2 pb-3 border-b border-gray-800/80">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`py-3 px-4 rounded-2xl text-sm font-semibold transition-all flex items-center justify-between ${
+                      isActive(link.path)
+                        ? 'bg-gold/20 text-gold border border-gold/40 shadow-md'
+                        : 'bg-dark-bg/60 text-gray-300 hover:text-white hover:bg-dark-bg'
+                    }`}
                   >
-                    Logout
-                  </button>
-                </div>
+                    <span>{link.name}</span>
+                    {isActive(link.path) && <Sparkles className="w-3.5 h-3.5 text-gold" />}
+                  </Link>
+                ))}
               </div>
-            ) : (
-              <div className="grid grid-cols-2 gap-3 pt-2">
-                <Link
-                  to="/login"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-center text-sm py-2 text-gray-300 border border-gray-700 rounded-lg"
+
+              {/* Action Buttons in Mobile Drawer */}
+              <div className="space-y-3 pt-1">
+                <a
+                  href="tel:+919272174699"
+                  onClick={() => {
+                    handleCallClick();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl text-sm font-bold text-black gold-btn shadow-lg uppercase tracking-wider"
                 >
-                  Sign In
-                </Link>
-                <Link
-                  to="/register"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-center text-sm py-2 gold-btn rounded-lg"
-                >
-                  Register
-                </Link>
+                  <PhoneCall className="w-4 h-4" /> Call: +91 9272174699
+                </a>
+
+                {user ? (
+                  <div className="bg-dark-bg/80 p-4 rounded-2xl border border-gray-800 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-9 h-9 rounded-xl bg-gold/20 text-gold flex items-center justify-center font-bold text-sm border border-gold/30">
+                          {user.name.charAt(0).toUpperCase()}
+                        </div>
+                        <div>
+                          <p className="text-sm font-bold text-white leading-tight">{user.name}</p>
+                          <p className="text-[11px] text-gray-400">{user.email}</p>
+                        </div>
+                      </div>
+
+                      {isAdmin && (
+                        <Link
+                          to="/admin"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="text-xs font-bold bg-gold text-black px-3 py-1 rounded-lg shadow"
+                        >
+                          Admin
+                        </Link>
+                      )}
+                    </div>
+
+                    <div className="flex gap-2 pt-2 border-t border-gray-800">
+                      <Link
+                        to="/profile"
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="w-full text-center py-2 text-xs font-semibold text-gold bg-gold/10 border border-gold/30 rounded-xl"
+                      >
+                        My Profile & Bookings
+                      </Link>
+                      <button
+                        onClick={() => {
+                          logout();
+                          setMobileMenuOpen(false);
+                        }}
+                        className="w-full text-center py-2 text-xs font-semibold text-red-400 bg-red-950/40 border border-red-500/30 rounded-xl"
+                      >
+                        Sign Out
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-2 gap-3 pt-1">
+                    <Link
+                      to="/login"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="text-center py-3 text-sm font-semibold text-gray-200 bg-dark-bg border border-gray-700 rounded-2xl"
+                    >
+                      Sign In
+                    </Link>
+                    <Link
+                      to="/register"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="text-center py-3 text-sm font-bold text-black gold-btn rounded-2xl shadow-md uppercase"
+                    >
+                      Register
+                    </Link>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-        </div>
-      )}
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

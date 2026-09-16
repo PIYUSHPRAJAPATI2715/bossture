@@ -48,37 +48,45 @@ export default function ServicesPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
           <span className="text-xs font-bold text-gold uppercase tracking-widest">World Class Travel</span>
-          <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white mt-2 mb-4">
+          <h1 className="font-serif text-3xl sm:text-5xl font-bold text-white mt-2 mb-4">
             Our Premium <span className="text-gold">Services</span>
           </h1>
-          <p className="text-gray-400 text-base">
+          <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
             From seamless outstation cab rides to bespoke spiritual yatras and luxury corporate travel, Boss Tours & Travels provides top-notch transport solutions.
           </p>
-        </div>
+        </motion.div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16">
           {services.map((svc, idx) => {
             const Icon = svc.icon;
             return (
               <motion.div
                 key={idx}
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
                 whileHover={{ y: -6 }}
-                className="glass-card p-8 rounded-2xl border border-gold/20 flex flex-col justify-between"
+                className="glass-card p-6 sm:p-8 rounded-2xl border border-gold/20 flex flex-col justify-between hover:border-gold/50 transition-all duration-300 shadow-xl"
               >
                 <div>
-                  <div className="w-14 h-14 rounded-2xl bg-gold/10 border border-gold/30 text-gold flex items-center justify-center mb-6">
+                  <div className="w-14 h-14 rounded-2xl bg-gold/10 border border-gold/30 text-gold flex items-center justify-center mb-6 shadow-inner">
                     <Icon className="w-7 h-7" />
                   </div>
                   <h3 className="font-serif text-xl font-bold text-white mb-3">{svc.title}</h3>
-                  <p className="text-sm text-gray-400 leading-relaxed mb-6">{svc.description}</p>
+                  <p className="text-xs sm:text-sm text-gray-400 leading-relaxed mb-6">{svc.description}</p>
                   
                   <ul className="space-y-2 mb-6">
                     {svc.features.map((feat, fidx) => (
                       <li key={fidx} className="text-xs text-gray-300 flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-gold" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" />
                         {feat}
                       </li>
                     ))}
@@ -87,7 +95,7 @@ export default function ServicesPage() {
 
                 <Link
                   to="/booking"
-                  className="gold-btn w-full py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2"
+                  className="gold-btn w-full py-3 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-md hover:shadow-gold/20"
                 >
                   Book Service <ArrowRight className="w-4 h-4" />
                 </Link>

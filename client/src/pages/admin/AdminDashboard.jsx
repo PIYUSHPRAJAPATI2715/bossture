@@ -73,7 +73,7 @@ export default function AdminDashboard() {
     }
   };
 
-  // --- FILE UPLOAD HANDLERS (Base64 + Server Upload Fallback) ---
+  // --- FILE UPLOAD HANDLERS ---
   const handleCarFileUpload = (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -225,38 +225,38 @@ export default function AdminDashboard() {
     <div className="min-h-screen bg-dark-bg text-gray-200">
       
       {/* Dedicated Admin Header Topbar */}
-      <header className="bg-dark-card border-b border-gold/30 sticky top-0 z-40 px-4 sm:px-8 py-4 shadow-xl">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gold-light via-gold to-gold-dark text-black font-extrabold flex items-center justify-center font-serif text-lg">
+      <header className="bg-dark-card border-b border-gold/30 sticky top-0 z-40 px-4 sm:px-8 py-3.5 shadow-xl">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-br from-gold-light via-gold to-gold-dark text-black font-extrabold flex items-center justify-center font-serif text-base sm:text-lg shadow-md shadow-gold/20">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="font-serif text-xl font-bold text-white tracking-wider">
-                BOSS <span className="text-gold">ADMIN PANEL</span>
+              <h1 className="font-serif text-base sm:text-xl font-bold text-white tracking-wider leading-tight">
+                BOSS <span className="text-gold">ADMIN</span>
               </h1>
-              <span className="text-[10px] text-emerald-400 font-semibold uppercase tracking-widest block -mt-1">
-                ● Dynamic Live System
+              <span className="text-[9px] sm:text-[10px] text-emerald-400 font-semibold uppercase tracking-widest block">
+                ● Live System
               </span>
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <Link
               to="/"
               target="_blank"
-              className="hidden sm:flex items-center gap-2 text-xs font-semibold text-gold bg-gold/10 px-4 py-2 rounded-xl border border-gold/30 hover:bg-gold hover:text-black transition"
+              className="flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold text-gold bg-gold/10 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl border border-gold/30 hover:bg-gold hover:text-black transition"
             >
-              <Eye className="w-4 h-4" /> View Public Site
+              <Eye className="w-3.5 h-3.5" /> <span className="hidden sm:inline">View Public Site</span>
             </Link>
 
-            <div className="flex items-center gap-3 border-l border-gray-800 pl-4">
+            <div className="flex items-center gap-2 sm:gap-3 border-l border-gray-800 pl-2 sm:pl-4">
               <span className="text-xs font-medium text-white hidden md:inline">{user?.name}</span>
               <button
                 onClick={logout}
-                className="flex items-center gap-1.5 text-xs text-red-400 hover:text-red-300 font-semibold bg-red-950/40 px-3 py-1.5 rounded-lg border border-red-500/30 transition"
+                className="flex items-center gap-1 text-[11px] sm:text-xs text-red-400 hover:text-red-300 font-semibold bg-red-950/40 px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-lg border border-red-500/30 transition"
               >
-                <LogOut className="w-3.5 h-3.5" /> Logout
+                <LogOut className="w-3.5 h-3.5" /> <span className="hidden sm:inline">Logout</span>
               </button>
             </div>
           </div>
@@ -264,25 +264,25 @@ export default function AdminDashboard() {
       </header>
 
       {/* Main Admin Body */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         
         {/* Sub Header & Refresh */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-6 sm:mb-8">
           <div>
-            <h2 className="font-serif text-2xl font-bold text-white">System Dashboard</h2>
-            <p className="text-xs text-gray-400">Manage real-time bookings, fleet cars, tour packages, image uploads, and user accounts</p>
+            <h2 className="font-serif text-xl sm:text-2xl font-bold text-white">System Dashboard</h2>
+            <p className="text-[11px] sm:text-xs text-gray-400">Manage real-time bookings, fleet cars, tour packages, image uploads, and user accounts</p>
           </div>
 
           <button
             onClick={loadAllData}
-            className="flex items-center gap-2 bg-dark-card border border-gold/30 text-gold px-4 py-2 rounded-xl text-xs font-semibold hover:bg-gold hover:text-black transition"
+            className="flex items-center gap-2 bg-dark-card border border-gold/30 text-gold px-3.5 py-2 rounded-xl text-xs font-semibold hover:bg-gold hover:text-black transition shadow-md"
           >
-            <RefreshCw className="w-4 h-4" /> Refresh Data
+            <RefreshCw className="w-3.5 h-3.5" /> Refresh Live Data
           </button>
         </div>
 
-        {/* Tab Navigation Bar */}
-        <div className="flex flex-wrap gap-2 border-b border-gray-800 pb-4 mb-8">
+        {/* Tab Navigation Bar (Horizontal Scroll on Mobile) */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-3 mb-6 sm:mb-8 no-scrollbar scroll-smooth">
           {[
             { id: 'overview', label: 'Overview', icon: BarChart3 },
             { id: 'bookings', label: `Bookings (${bookings.length})`, icon: Clock },
@@ -296,13 +296,13 @@ export default function AdminDashboard() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition ${
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-semibold transition shrink-0 ${
                   activeTab === tab.id
-                    ? 'gold-btn shadow-lg'
+                    ? 'gold-btn shadow-lg shadow-gold/20'
                     : 'bg-dark-card text-gray-400 hover:text-white border border-gray-800'
                 }`}
               >
-                <Icon className="w-4 h-4" />
+                <Icon className="w-3.5 h-3.5" />
                 {tab.label}
               </button>
             );
@@ -310,7 +310,7 @@ export default function AdminDashboard() {
         </div>
 
         {loading ? (
-          <div className="text-center py-20 text-gold text-lg">Loading Admin Dashboard...</div>
+          <div className="text-center py-20 text-gold text-base sm:text-lg">Loading Admin Dashboard...</div>
         ) : (
           <div>
             
@@ -318,34 +318,34 @@ export default function AdminDashboard() {
             {activeTab === 'overview' && stats && (
               <div className="space-y-8">
                 {/* Metric Cards */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-                  <div className="glass-card p-6 rounded-2xl border border-gold/30">
-                    <span className="text-xs text-gray-400 uppercase font-bold block mb-1">Total Revenue</span>
-                    <span className="font-serif text-3xl font-bold text-gold">₹{stats.total_revenue?.toLocaleString('en-IN')}</span>
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                  <div className="glass-card p-5 sm:p-6 rounded-3xl border border-gold/30">
+                    <span className="text-[10px] sm:text-xs text-gray-400 uppercase font-bold block mb-1">Total Revenue</span>
+                    <span className="font-serif text-2xl sm:text-3xl font-bold text-gold">₹{stats.total_revenue?.toLocaleString('en-IN')}</span>
                   </div>
 
-                  <div className="glass-card p-6 rounded-2xl border border-gold/30">
-                    <span className="text-xs text-gray-400 uppercase font-bold block mb-1">Total Bookings</span>
-                    <span className="font-serif text-3xl font-bold text-white">{stats.total_bookings}</span>
+                  <div className="glass-card p-5 sm:p-6 rounded-3xl border border-gold/30">
+                    <span className="text-[10px] sm:text-xs text-gray-400 uppercase font-bold block mb-1">Total Bookings</span>
+                    <span className="font-serif text-2xl sm:text-3xl font-bold text-white">{stats.total_bookings}</span>
                     <span className="text-[10px] text-amber-400 block mt-1">{stats.pending_bookings} Pending</span>
                   </div>
 
-                  <div className="glass-card p-6 rounded-2xl border border-gold/30">
-                    <span className="text-xs text-gray-400 uppercase font-bold block mb-1">Active Fleet Vehicles</span>
-                    <span className="font-serif text-3xl font-bold text-white">{stats.total_cars}</span>
+                  <div className="glass-card p-5 sm:p-6 rounded-3xl border border-gold/30">
+                    <span className="text-[10px] sm:text-xs text-gray-400 uppercase font-bold block mb-1">Active Vehicles</span>
+                    <span className="font-serif text-2xl sm:text-3xl font-bold text-white">{stats.total_cars}</span>
                   </div>
 
-                  <div className="glass-card p-6 rounded-2xl border border-gold/30">
-                    <span className="text-xs text-gray-400 uppercase font-bold block mb-1">Customer Leads</span>
-                    <span className="font-serif text-3xl font-bold text-white">{stats.new_inquiries}</span>
+                  <div className="glass-card p-5 sm:p-6 rounded-3xl border border-gold/30">
+                    <span className="text-[10px] sm:text-xs text-gray-400 uppercase font-bold block mb-1">Customer Leads</span>
+                    <span className="font-serif text-2xl sm:text-3xl font-bold text-white">{stats.new_inquiries}</span>
                   </div>
                 </div>
 
                 {/* Recent Bookings Quick Table */}
-                <div className="glass-card p-6 rounded-2xl border border-gold/20">
-                  <h3 className="font-serif text-xl font-bold text-white mb-4">Recent Bookings</h3>
+                <div className="glass-card p-5 sm:p-6 rounded-3xl border border-gold/20">
+                  <h3 className="font-serif text-lg sm:text-xl font-bold text-white mb-4">Recent Bookings</h3>
                   <div className="overflow-x-auto">
-                    <table className="w-full text-left text-xs text-gray-300">
+                    <table className="w-full text-left text-xs text-gray-300 min-w-[600px]">
                       <thead className="bg-dark-card uppercase text-gold border-b border-gray-800">
                         <tr>
                           <th className="p-3">Ref Code</th>
@@ -376,8 +376,8 @@ export default function AdminDashboard() {
 
             {/* 2. BOOKINGS TAB */}
             {activeTab === 'bookings' && (
-              <div className="glass-card p-6 rounded-2xl border border-gold/20 overflow-x-auto">
-                <table className="w-full text-left text-xs text-gray-300">
+              <div className="glass-card p-5 sm:p-6 rounded-3xl border border-gold/20 overflow-x-auto">
+                <table className="w-full text-left text-xs text-gray-300 min-w-[700px]">
                   <thead className="bg-dark-card uppercase text-gold border-b border-gray-800">
                     <tr>
                       <th className="p-3">Ref Code</th>
@@ -407,7 +407,7 @@ export default function AdminDashboard() {
                           <select
                             value={b.status}
                             onChange={(e) => handleUpdateBookingStatus(b.id, e.target.value)}
-                            className="bg-dark-card border border-gray-700 text-xs rounded px-2 py-1 font-semibold text-white focus:outline-none focus:border-gold"
+                            className="bg-dark-card border border-gray-700 text-xs rounded-lg px-2 py-1 font-semibold text-white focus:outline-none focus:border-gold"
                           >
                             <option value="Pending">Pending</option>
                             <option value="Confirmed">Confirmed</option>
@@ -435,30 +435,30 @@ export default function AdminDashboard() {
             {activeTab === 'fleet' && (
               <div className="space-y-6">
                 <div className="flex justify-between items-center">
-                  <h3 className="font-serif text-xl font-bold text-white">Fleet Inventory</h3>
+                  <h3 className="font-serif text-lg sm:text-xl font-bold text-white">Fleet Inventory</h3>
                   <button
                     onClick={() => {
                       setEditingCar(null);
                       setCarForm({ name: '', type: 'Sedan', capacity: '4+1 Seater', price_per_km: 12, base_price: 2500, image: '/images/fleet-sedan.jpg', specs: 'Air Conditioned, Clean Seats' });
                       setCarModalOpen(true);
                     }}
-                    className="gold-btn px-4 py-2 rounded-xl text-xs font-bold uppercase flex items-center gap-1.5"
+                    className="gold-btn px-4 py-2 rounded-xl text-xs font-bold uppercase flex items-center gap-1.5 shadow-md"
                   >
-                    <Plus className="w-4 h-4" /> Add New Vehicle
+                    <Plus className="w-4 h-4" /> Add Vehicle
                   </button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
                   {cars.map(c => (
-                    <div key={c.id} className="glass-card p-5 rounded-2xl border border-gold/20 flex flex-col justify-between">
+                    <div key={c.id} className="glass-card p-5 rounded-3xl border border-gold/20 flex flex-col justify-between">
                       <div>
                         <img 
                           src={getImageUrl(c.image)} 
                           onError={handleImageError} 
                           alt={c.name} 
-                          className="w-full h-40 object-cover rounded-xl mb-4 bg-dark-card" 
+                          className="w-full h-40 object-cover rounded-2xl mb-4 bg-dark-card" 
                         />
-                        <h4 className="font-serif text-lg font-bold text-white">{c.name}</h4>
+                        <h4 className="font-serif text-base sm:text-lg font-bold text-white">{c.name}</h4>
                         <p className="text-xs text-gold font-semibold">{c.type} &bull; {c.capacity}</p>
                         <p className="text-xs text-gray-400 mt-2">₹{c.price_per_km}/km &bull; Base Fare: ₹{c.base_price}</p>
                       </div>
@@ -469,13 +469,13 @@ export default function AdminDashboard() {
                             setCarForm({ ...c, specs: c.specs ? (Array.isArray(c.specs) ? c.specs.join(', ') : c.specs) : '' });
                             setCarModalOpen(true);
                           }}
-                          className="text-xs bg-gray-800 hover:bg-gold hover:text-black text-gray-200 px-3 py-1.5 rounded-lg transition"
+                          className="text-xs bg-gray-800 hover:bg-gold hover:text-black text-gray-200 px-3 py-1.5 rounded-xl transition"
                         >
                           Edit
                         </button>
                         <button
                           onClick={() => handleDeleteCar(c.id)}
-                          className="text-xs bg-red-950/60 hover:bg-red-600 text-red-300 hover:text-white px-3 py-1.5 rounded-lg transition"
+                          className="text-xs bg-red-950/60 hover:bg-red-600 text-red-300 hover:text-white px-3 py-1.5 rounded-xl transition"
                         >
                           Delete
                         </button>
@@ -490,30 +490,30 @@ export default function AdminDashboard() {
             {activeTab === 'packages' && (
               <div className="space-y-6">
                 <div className="flex justify-between items-center">
-                  <h3 className="font-serif text-xl font-bold text-white">Tour Packages</h3>
+                  <h3 className="font-serif text-lg sm:text-xl font-bold text-white">Tour Packages</h3>
                   <button
                     onClick={() => {
                       setEditingPackage(null);
                       setPackageForm({ title: '', category: 'Spiritual', duration: '2 Days / 1 Night', price: 5000, badge: 'Best Seller', image: '/images/package-1.jpg', description: '', highlights: 'VIP Darshan, AC Vehicle' });
                       setPackageModalOpen(true);
                     }}
-                    className="gold-btn px-4 py-2 rounded-xl text-xs font-bold uppercase flex items-center gap-1.5"
+                    className="gold-btn px-4 py-2 rounded-xl text-xs font-bold uppercase flex items-center gap-1.5 shadow-md"
                   >
-                    <Plus className="w-4 h-4" /> Add Tour Package
+                    <Plus className="w-4 h-4" /> Add Package
                   </button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
                   {packages.map(p => (
-                    <div key={p.id} className="glass-card p-5 rounded-2xl border border-gold/20 flex flex-col justify-between">
+                    <div key={p.id} className="glass-card p-5 rounded-3xl border border-gold/20 flex flex-col justify-between">
                       <div>
                         <img 
                           src={getImageUrl(p.image)} 
                           onError={handleImageError} 
                           alt={p.title} 
-                          className="w-full h-40 object-cover rounded-xl mb-4 bg-dark-card" 
+                          className="w-full h-40 object-cover rounded-2xl mb-4 bg-dark-card" 
                         />
-                        <h4 className="font-serif text-lg font-bold text-white">{p.title}</h4>
+                        <h4 className="font-serif text-base sm:text-lg font-bold text-white">{p.title}</h4>
                         <p className="text-xs text-gold font-semibold">{p.category} &bull; {p.duration}</p>
                         <p className="text-sm font-bold text-white mt-1">₹{p.price}</p>
                       </div>
@@ -524,13 +524,13 @@ export default function AdminDashboard() {
                             setPackageForm({ ...p, highlights: p.highlights ? (Array.isArray(p.highlights) ? p.highlights.join(', ') : p.highlights) : '' });
                             setPackageModalOpen(true);
                           }}
-                          className="text-xs bg-gray-800 hover:bg-gold hover:text-black text-gray-200 px-3 py-1.5 rounded-lg transition"
+                          className="text-xs bg-gray-800 hover:bg-gold hover:text-black text-gray-200 px-3 py-1.5 rounded-xl transition"
                         >
                           Edit
                         </button>
                         <button
                           onClick={() => handleDeletePackage(p.id)}
-                          className="text-xs bg-red-950/60 hover:bg-red-600 text-red-300 hover:text-white px-3 py-1.5 rounded-lg transition"
+                          className="text-xs bg-red-950/60 hover:bg-red-600 text-red-300 hover:text-white px-3 py-1.5 rounded-xl transition"
                         >
                           Delete
                         </button>
@@ -543,8 +543,8 @@ export default function AdminDashboard() {
 
             {/* 5. USERS TAB */}
             {activeTab === 'users' && (
-              <div className="glass-card p-6 rounded-2xl border border-gold/20 overflow-x-auto">
-                <table className="w-full text-left text-xs text-gray-300">
+              <div className="glass-card p-5 sm:p-6 rounded-3xl border border-gold/20 overflow-x-auto">
+                <table className="w-full text-left text-xs text-gray-300 min-w-[600px]">
                   <thead className="bg-dark-card uppercase text-gold border-b border-gray-800">
                     <tr>
                       <th className="p-3">ID</th>
@@ -570,13 +570,13 @@ export default function AdminDashboard() {
                         <td className="p-3 text-right space-x-2">
                           <button
                             onClick={() => handleToggleUserRole(u.id, u.role)}
-                            className="text-xs text-gold hover:underline"
+                            className="text-xs text-gold hover:underline font-semibold"
                           >
                             Toggle Role
                           </button>
                           <button
                             onClick={() => handleDeleteUser(u.id)}
-                            className="text-xs text-red-400 hover:text-red-300"
+                            className="text-xs text-red-400 hover:text-red-300 font-semibold"
                           >
                             Delete
                           </button>
@@ -590,8 +590,8 @@ export default function AdminDashboard() {
 
             {/* 6. INQUIRIES TAB */}
             {activeTab === 'inquiries' && (
-              <div className="glass-card p-6 rounded-2xl border border-gold/20 overflow-x-auto">
-                <table className="w-full text-left text-xs text-gray-300">
+              <div className="glass-card p-5 sm:p-6 rounded-3xl border border-gold/20 overflow-x-auto">
+                <table className="w-full text-left text-xs text-gray-300 min-w-[650px]">
                   <thead className="bg-dark-card uppercase text-gold border-b border-gray-800">
                     <tr>
                       <th className="p-3">Date</th>
@@ -613,7 +613,7 @@ export default function AdminDashboard() {
                         <td className="p-3 text-right">
                           <button
                             onClick={() => handleDeleteInquiry(inq.id)}
-                            className="text-red-400 hover:text-red-300"
+                            className="text-red-400 hover:text-red-300 font-semibold"
                           >
                             Delete
                           </button>
@@ -630,9 +630,9 @@ export default function AdminDashboard() {
 
         {/* CAR MODAL (Dual File Upload & Paste URL) */}
         {carModalOpen && (
-          <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
-            <div className="glass-card w-full max-w-lg p-6 sm:p-8 rounded-3xl border border-gold/40 space-y-4 max-h-[90vh] overflow-y-auto">
-              <h3 className="font-serif text-xl font-bold text-white">
+          <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 backdrop-blur-sm">
+            <div className="glass-card w-full max-w-lg p-5 sm:p-8 rounded-3xl border border-gold/40 space-y-4 max-h-[90vh] overflow-y-auto">
+              <h3 className="font-serif text-lg sm:text-xl font-bold text-white">
                 {editingCar ? 'Edit Fleet Vehicle' : 'Add New Fleet Vehicle'}
               </h3>
 
@@ -699,7 +699,7 @@ export default function AdminDashboard() {
 
                 {/* DUAL IMAGE OPTIONS: Upload File vs Paste URL */}
                 <div className="bg-dark-card/90 p-4 rounded-2xl border border-gray-800 space-y-3">
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between flex-wrap gap-2">
                     <label className="block text-gold font-bold flex items-center gap-1.5">
                       <ImageIcon className="w-4 h-4" /> Vehicle Image Source
                     </label>
@@ -788,9 +788,9 @@ export default function AdminDashboard() {
 
         {/* PACKAGE MODAL (Dual File Upload & Paste URL) */}
         {packageModalOpen && (
-          <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
-            <div className="glass-card w-full max-w-lg p-6 sm:p-8 rounded-3xl border border-gold/40 space-y-4 max-h-[90vh] overflow-y-auto">
-              <h3 className="font-serif text-xl font-bold text-white">
+          <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 backdrop-blur-sm">
+            <div className="glass-card w-full max-w-lg p-5 sm:p-8 rounded-3xl border border-gold/40 space-y-4 max-h-[90vh] overflow-y-auto">
+              <h3 className="font-serif text-lg sm:text-xl font-bold text-white">
                 {editingPackage ? 'Edit Tour Package' : 'Add New Tour Package'}
               </h3>
 
@@ -857,7 +857,7 @@ export default function AdminDashboard() {
 
                 {/* DUAL IMAGE OPTIONS */}
                 <div className="bg-dark-card/90 p-4 rounded-2xl border border-gray-800 space-y-3">
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between flex-wrap gap-2">
                     <label className="block text-gold font-bold flex items-center gap-1.5">
                       <ImageIcon className="w-4 h-4" /> Package Image Source
                     </label>
