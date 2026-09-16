@@ -71,7 +71,7 @@ export default function BookingPage() {
   };
 
   return (
-    <div className="pt-24 sm:pt-28 pb-20 bg-dark-bg min-h-screen">
+    <div className="pt-24 sm:pt-28 pb-20 bg-slate-50 min-h-screen">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -80,11 +80,11 @@ export default function BookingPage() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-8 sm:mb-10"
         >
-          <span className="text-xs font-bold text-gold uppercase tracking-widest block mb-1">Instant Reservation</span>
-          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-white">
-            Book Your <span className="text-gold">Journey</span>
+          <span className="text-xs font-bold text-amber-600 uppercase tracking-widest block mb-1">Instant Reservation</span>
+          <h1 className="font-serif text-3xl sm:text-4xl font-extrabold text-slate-900">
+            Book Your <span className="text-amber-600">Journey</span>
           </h1>
-          <p className="text-xs sm:text-sm text-gray-400 mt-1">
+          <p className="text-xs sm:text-sm text-slate-600 mt-1 font-medium">
             Fill out the details below for guaranteed vehicle allocation and instant booking reference code.
           </p>
         </motion.div>
@@ -96,42 +96,42 @@ export default function BookingPage() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="glass-card p-6 sm:p-12 rounded-3xl border border-gold/40 text-center space-y-6 shadow-2xl shadow-gold/10"
+              className="bg-white p-6 sm:p-12 rounded-3xl border border-slate-200 text-center space-y-6 shadow-2xl"
             >
-              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gold/20 text-gold rounded-full flex items-center justify-center mx-auto border border-gold/50 shadow-lg">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto border border-emerald-200 shadow-md">
                 <CheckCircle2 className="w-10 h-10 sm:w-12 sm:h-12" />
               </div>
 
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white">Booking Confirmed!</h2>
-              <p className="text-xs sm:text-sm text-gray-300">
-                Thank you, <strong className="text-gold">{successBooking.customer_name}</strong>. Your trip reservation has been recorded.
+              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900">Booking Confirmed!</h2>
+              <p className="text-xs sm:text-sm text-slate-600">
+                Thank you, <strong className="text-amber-700 font-bold">{successBooking.customer_name}</strong>. Your trip reservation has been recorded.
               </p>
 
-              <div className="bg-dark-card p-5 sm:p-6 rounded-2xl border border-gray-800 text-left space-y-3 max-w-md mx-auto text-xs sm:text-sm shadow-inner">
-                <div className="flex justify-between border-b border-gray-800 pb-2">
-                  <span className="text-gray-400">Booking Reference:</span>
-                  <span className="font-mono font-bold text-gold">{successBooking.booking_code}</span>
+              <div className="bg-slate-50 p-5 sm:p-6 rounded-2xl border border-slate-200 text-left space-y-3 max-w-md mx-auto text-xs sm:text-sm shadow-inner">
+                <div className="flex justify-between border-b border-slate-200 pb-2">
+                  <span className="text-slate-500 font-medium">Booking Reference:</span>
+                  <span className="font-mono font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">{successBooking.booking_code}</span>
                 </div>
-                <div className="flex justify-between border-b border-gray-800 pb-2">
-                  <span className="text-gray-400">Route:</span>
-                  <span className="text-white font-medium">{successBooking.pickup_location} &rarr; {successBooking.drop_location}</span>
+                <div className="flex justify-between border-b border-slate-200 pb-2">
+                  <span className="text-slate-500 font-medium">Route:</span>
+                  <span className="text-slate-900 font-bold">{successBooking.pickup_location} &rarr; {successBooking.drop_location}</span>
                 </div>
-                <div className="flex justify-between border-b border-gray-800 pb-2">
-                  <span className="text-gray-400">Travel Date:</span>
-                  <span className="text-white font-medium">{successBooking.pickup_date} at {successBooking.pickup_time}</span>
+                <div className="flex justify-between border-b border-slate-200 pb-2">
+                  <span className="text-slate-500 font-medium">Travel Date:</span>
+                  <span className="text-slate-900 font-bold">{successBooking.pickup_date} at {successBooking.pickup_time}</span>
                 </div>
-                <div className="flex justify-between border-b border-gray-800 pb-2">
-                  <span className="text-gray-400">Vehicle Assigned:</span>
-                  <span className="text-white font-medium">{successBooking.vehicle_name}</span>
+                <div className="flex justify-between border-b border-slate-200 pb-2">
+                  <span className="text-slate-500 font-medium">Vehicle Assigned:</span>
+                  <span className="text-slate-900 font-bold">{successBooking.vehicle_name}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-400">Est. Total Fare:</span>
-                  <span className="text-gold font-bold">₹{successBooking.total_amount?.toLocaleString('en-IN')}</span>
+                  <span className="text-slate-500 font-medium">Est. Total Fare:</span>
+                  <span className="text-amber-700 font-extrabold text-base">₹{successBooking.total_amount?.toLocaleString('en-IN')}</span>
                 </div>
               </div>
 
-              <p className="text-xs text-gray-400">
-                Our dispatch team will contact you on <strong className="text-white">{successBooking.phone}</strong> shortly.
+              <p className="text-xs text-slate-500 font-medium">
+                Our dispatch team will contact you on <strong className="text-slate-900 font-bold">{successBooking.phone}</strong> shortly.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
@@ -139,13 +139,13 @@ export default function BookingPage() {
                   href={`https://wa.me/919272174699?text=Hi,%20I%20just%20booked%20ref%20${successBooking.booking_code}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="gold-btn px-6 py-3 rounded-xl text-xs font-bold uppercase shadow-lg"
+                  className="gold-btn px-6 py-3 rounded-xl text-xs font-extrabold uppercase shadow-lg"
                 >
                   Send Reference via WhatsApp
                 </a>
                 <button
                   onClick={() => navigate('/')}
-                  className="px-6 py-3 rounded-xl text-xs font-bold uppercase bg-dark-card border border-gray-700 text-gray-300 hover:text-white"
+                  className="px-6 py-3 rounded-xl text-xs font-bold uppercase bg-slate-100 border border-slate-300 text-slate-800 hover:bg-slate-200"
                 >
                   Return to Home
                 </button>
@@ -157,23 +157,23 @@ export default function BookingPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               onSubmit={handleSubmit}
-              className="glass-card p-5 sm:p-10 rounded-3xl border border-gold/30 space-y-6 shadow-2xl"
+              className="bg-white p-6 sm:p-10 rounded-3xl border border-slate-200 space-y-6 shadow-xl"
             >
               {errorMsg && (
-                <div className="bg-red-950/80 border border-red-500/50 text-red-200 text-xs sm:text-sm p-4 rounded-xl">
+                <div className="bg-red-50 border border-red-200 text-red-600 text-xs sm:text-sm p-4 rounded-xl font-semibold">
                   {errorMsg}
                 </div>
               )}
 
               {/* Service & Route Info */}
               <div>
-                <h3 className="font-serif text-base sm:text-lg font-bold text-gold mb-3 border-b border-gray-800 pb-2 flex items-center gap-2">
-                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-gold" /> 1. Trip & Location Details
+                <h3 className="font-serif text-base sm:text-lg font-bold text-amber-700 mb-4 border-b border-slate-200 pb-2 flex items-center gap-2">
+                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600" /> 1. Trip & Location Details
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-semibold text-gray-300 mb-1">Pickup Location</label>
+                    <label className="block text-xs font-extrabold uppercase tracking-wide text-slate-700 mb-1.5">Pickup Location</label>
                     <input
                       type="text"
                       name="pickup_location"
@@ -181,12 +181,12 @@ export default function BookingPage() {
                       onChange={handleChange}
                       required
                       placeholder="e.g. Bandra West, Mumbai"
-                      className="w-full bg-dark-card border border-gray-700/80 rounded-xl px-4 py-3 text-xs sm:text-sm text-white focus:outline-none focus:border-gold"
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-amber-500 focus:bg-white font-semibold shadow-sm"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-gray-300 mb-1">Destination / Drop Location</label>
+                    <label className="block text-xs font-extrabold uppercase tracking-wide text-slate-700 mb-1.5">Destination / Drop Location</label>
                     <input
                       type="text"
                       name="drop_location"
@@ -194,7 +194,7 @@ export default function BookingPage() {
                       onChange={handleChange}
                       required
                       placeholder="e.g. Shirdi Sai Baba Temple"
-                      className="w-full bg-dark-card border border-gray-700/80 rounded-xl px-4 py-3 text-xs sm:text-sm text-white focus:outline-none focus:border-gold"
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-amber-500 focus:bg-white font-semibold shadow-sm"
                     />
                   </div>
                 </div>
@@ -202,30 +202,30 @@ export default function BookingPage() {
 
               {/* Date & Vehicle Choice */}
               <div>
-                <h3 className="font-serif text-base sm:text-lg font-bold text-gold mb-3 border-b border-gray-800 pb-2 flex items-center gap-2">
-                  <Car className="w-4 h-4 sm:w-5 sm:h-5 text-gold" /> 2. Schedule & Vehicle Selection
+                <h3 className="font-serif text-base sm:text-lg font-bold text-amber-700 mb-4 border-b border-slate-200 pb-2 flex items-center gap-2">
+                  <Car className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600" /> 2. Schedule & Vehicle Selection
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
-                    <label className="block text-xs font-semibold text-gray-300 mb-1">Pickup Date</label>
+                    <label className="block text-xs font-extrabold uppercase tracking-wide text-slate-700 mb-1.5">Pickup Date</label>
                     <input
                       type="date"
                       name="pickup_date"
                       value={formData.pickup_date}
                       onChange={handleChange}
                       required
-                      className="w-full bg-dark-card border border-gray-700/80 rounded-xl px-4 py-3 text-xs sm:text-sm text-white focus:outline-none focus:border-gold"
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-amber-500 focus:bg-white font-semibold shadow-sm"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-gray-300 mb-1">Pickup Time</label>
+                    <label className="block text-xs font-extrabold uppercase tracking-wide text-slate-700 mb-1.5">Pickup Time</label>
                     <select
                       name="pickup_time"
                       value={formData.pickup_time}
                       onChange={handleChange}
-                      className="w-full bg-dark-card border border-gray-700/80 rounded-xl px-4 py-3 text-xs sm:text-sm text-white focus:outline-none focus:border-gold"
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-amber-500 focus:bg-white font-semibold shadow-sm"
                     >
                       <option>05:00 AM</option>
                       <option>06:00 AM</option>
@@ -240,12 +240,12 @@ export default function BookingPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-gray-300 mb-1">Select Vehicle</label>
+                    <label className="block text-xs font-extrabold uppercase tracking-wide text-slate-700 mb-1.5">Select Vehicle</label>
                     <select
                       name="vehicle_name"
                       value={formData.vehicle_name}
                       onChange={handleChange}
-                      className="w-full bg-dark-card border border-gray-700/80 rounded-xl px-4 py-3 text-xs sm:text-sm text-white focus:outline-none focus:border-gold"
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-amber-500 focus:bg-white font-semibold shadow-sm"
                     >
                       {cars.map(c => (
                         <option key={c.id} value={c.name}>{c.name} ({c.capacity})</option>
@@ -266,13 +266,13 @@ export default function BookingPage() {
 
               {/* Customer Details */}
               <div>
-                <h3 className="font-serif text-base sm:text-lg font-bold text-gold mb-3 border-b border-gray-800 pb-2 flex items-center gap-2">
-                  <User className="w-4 h-4 sm:w-5 sm:h-5 text-gold" /> 3. Customer Contact Details
+                <h3 className="font-serif text-base sm:text-lg font-bold text-amber-700 mb-4 border-b border-slate-200 pb-2 flex items-center gap-2">
+                  <User className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600" /> 3. Customer Contact Details
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
-                    <label className="block text-xs font-semibold text-gray-300 mb-1">Full Name</label>
+                    <label className="block text-xs font-extrabold uppercase tracking-wide text-slate-700 mb-1.5">Full Name</label>
                     <input
                       type="text"
                       name="customer_name"
@@ -280,12 +280,12 @@ export default function BookingPage() {
                       onChange={handleChange}
                       required
                       placeholder="Your Name"
-                      className="w-full bg-dark-card border border-gray-700/80 rounded-xl px-4 py-3 text-xs sm:text-sm text-white focus:outline-none focus:border-gold"
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-amber-500 focus:bg-white font-semibold shadow-sm"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-gray-300 mb-1">Phone Number (WhatsApp)</label>
+                    <label className="block text-xs font-extrabold uppercase tracking-wide text-slate-700 mb-1.5">Phone Number (WhatsApp)</label>
                     <input
                       type="tel"
                       name="phone"
@@ -293,41 +293,41 @@ export default function BookingPage() {
                       onChange={handleChange}
                       required
                       placeholder="+91 9876543210"
-                      className="w-full bg-dark-card border border-gray-700/80 rounded-xl px-4 py-3 text-xs sm:text-sm text-white focus:outline-none focus:border-gold"
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-amber-500 focus:bg-white font-semibold shadow-sm"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-gray-300 mb-1">Email Address</label>
+                    <label className="block text-xs font-extrabold uppercase tracking-wide text-slate-700 mb-1.5">Email Address</label>
                     <input
                       type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="name@example.com"
-                      className="w-full bg-dark-card border border-gray-700/80 rounded-xl px-4 py-3 text-xs sm:text-sm text-white focus:outline-none focus:border-gold"
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-amber-500 focus:bg-white font-semibold shadow-sm"
                     />
                   </div>
                 </div>
 
                 <div className="mt-4">
-                  <label className="block text-xs font-semibold text-gray-300 mb-1">Special Notes / Requests</label>
+                  <label className="block text-xs font-extrabold uppercase tracking-wide text-slate-700 mb-1.5">Special Notes / Requests</label>
                   <textarea
                     name="notes"
                     value={formData.notes}
                     onChange={handleChange}
                     rows={2}
                     placeholder="e.g. Need child seat, extra luggage space, or specific pickup spot..."
-                    className="w-full bg-dark-card border border-gray-700/80 rounded-xl px-4 py-3 text-xs sm:text-sm text-white focus:outline-none focus:border-gold"
+                    className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-amber-500 focus:bg-white font-medium shadow-sm"
                   />
                 </div>
               </div>
 
               {/* Total Fare & Submit Button */}
-              <div className="pt-6 border-t border-gray-800 flex items-center justify-between flex-wrap gap-4">
+              <div className="pt-6 border-t border-slate-200 flex items-center justify-between flex-wrap gap-4">
                 <div>
-                  <span className="text-[10px] sm:text-xs text-gray-400 block uppercase">Estimated Fare</span>
-                  <p className="font-serif text-2xl sm:text-3xl font-bold text-gold">₹{calculateEstimate().toLocaleString('en-IN')}</p>
+                  <span className="text-[10px] sm:text-xs text-slate-500 block uppercase font-bold">Estimated Base Fare</span>
+                  <p className="font-serif text-2xl sm:text-3xl font-extrabold text-amber-600">₹{calculateEstimate().toLocaleString('en-IN')}</p>
                 </div>
 
                 <motion.button
@@ -335,7 +335,7 @@ export default function BookingPage() {
                   whileTap={{ scale: 0.97 }}
                   type="submit"
                   disabled={loading}
-                  className="gold-btn px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-xs sm:text-sm font-bold uppercase tracking-wider shadow-xl flex items-center gap-2 disabled:opacity-50"
+                  className="gold-btn px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-xs sm:text-sm font-extrabold uppercase tracking-wider shadow-xl flex items-center gap-2 disabled:opacity-50"
                 >
                   {loading ? 'Submitting...' : 'Confirm & Reserve Cab'} <ArrowRight className="w-4 h-4" />
                 </motion.button>

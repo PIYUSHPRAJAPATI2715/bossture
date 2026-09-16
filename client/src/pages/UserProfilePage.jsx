@@ -41,44 +41,44 @@ export default function UserProfilePage() {
   const getStatusBadge = (status) => {
     switch (status) {
       case 'Confirmed':
-        return <span className="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs px-3 py-1 rounded-full font-bold flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5" /> Confirmed</span>;
+        return <span className="bg-emerald-50 text-emerald-700 border border-emerald-300 text-xs px-3 py-1 rounded-full font-extrabold flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> Confirmed</span>;
       case 'Completed':
-        return <span className="bg-blue-500/20 text-blue-400 border border-blue-500/30 text-xs px-3 py-1 rounded-full font-bold flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5" /> Completed</span>;
+        return <span className="bg-blue-50 text-blue-700 border border-blue-300 text-xs px-3 py-1 rounded-full font-extrabold flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5 text-blue-600" /> Completed</span>;
       case 'Cancelled':
-        return <span className="bg-red-500/20 text-red-400 border border-red-500/30 text-xs px-3 py-1 rounded-full font-bold flex items-center gap-1"><XCircle className="w-3.5 h-3.5" /> Cancelled</span>;
+        return <span className="bg-red-50 text-red-700 border border-red-300 text-xs px-3 py-1 rounded-full font-extrabold flex items-center gap-1"><XCircle className="w-3.5 h-3.5 text-red-600" /> Cancelled</span>;
       default:
-        return <span className="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs px-3 py-1 rounded-full font-bold flex items-center gap-1"><AlertCircle className="w-3.5 h-3.5" /> Pending Confirmation</span>;
+        return <span className="bg-amber-50 text-amber-800 border border-amber-300 text-xs px-3 py-1 rounded-full font-extrabold flex items-center gap-1"><AlertCircle className="w-3.5 h-3.5 text-amber-600" /> Pending Confirmation</span>;
     }
   };
 
   if (!user) return null;
 
   return (
-    <div className="pt-28 pb-20 bg-dark-bg min-h-screen">
+    <div className="pt-28 pb-20 bg-slate-50 min-h-screen">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* User Card */}
-        <div className="glass-card p-6 sm:p-8 rounded-3xl border border-gold/30 mb-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xl mb-10 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-gold-light via-gold to-gold-dark text-black font-serif text-2xl font-bold flex items-center justify-center shadow-lg">
+            <div className="w-16 h-16 rounded-2xl bg-amber-500 text-slate-950 font-serif text-2xl font-extrabold flex items-center justify-center shadow-md">
               {user.name.charAt(0).toUpperCase()}
             </div>
             <div>
-              <h1 className="font-serif text-2xl font-bold text-white">{user.name}</h1>
-              <p className="text-xs text-gray-400">{user.email} &bull; {user.phone || 'No phone provided'}</p>
-              <span className="inline-block mt-2 text-[10px] uppercase font-bold text-gold bg-gold/10 px-2.5 py-0.5 rounded border border-gold/30">
+              <h1 className="font-serif text-2xl font-bold text-slate-900">{user.name}</h1>
+              <p className="text-xs text-slate-500 font-medium">{user.email} &bull; {user.phone || 'No phone provided'}</p>
+              <span className="inline-block mt-2 text-[10px] uppercase font-bold text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded border border-amber-200">
                 {user.role === 'admin' ? 'Super Administrator' : 'VIP Member'}
               </span>
             </div>
           </div>
 
           <div className="flex items-center gap-3">
-            <Link to="/booking" className="gold-btn px-5 py-2.5 rounded-xl text-xs font-bold uppercase">
+            <Link to="/booking" className="gold-btn px-5 py-2.5 rounded-xl text-xs font-bold uppercase shadow">
               + New Booking
             </Link>
             <button
               onClick={logout}
-              className="px-4 py-2.5 rounded-xl text-xs font-semibold bg-dark-card border border-red-500/40 text-red-400 hover:bg-red-500 hover:text-white transition"
+              className="px-4 py-2.5 rounded-xl text-xs font-bold text-red-600 bg-red-50 border border-red-200 hover:bg-red-600 hover:text-white transition"
             >
               Sign Out
             </button>
@@ -87,20 +87,20 @@ export default function UserProfilePage() {
 
         {/* Bookings Section */}
         <div className="space-y-6">
-          <h2 className="font-serif text-2xl font-bold text-white border-l-4 border-gold pl-3">
+          <h2 className="font-serif text-2xl font-bold text-slate-900 border-l-4 border-amber-500 pl-3">
             Your Travel Bookings ({bookings.length})
           </h2>
 
           {loading ? (
-            <div className="text-center py-12 text-gold">Loading your trips...</div>
+            <div className="text-center py-12 text-amber-600 font-serif text-lg">Loading your trips...</div>
           ) : bookings.length === 0 ? (
-            <div className="glass-card p-12 rounded-3xl border border-gold/20 text-center space-y-4">
-              <Car className="w-12 h-12 text-gold mx-auto" />
-              <h3 className="font-serif text-xl font-bold text-white">No active bookings found</h3>
-              <p className="text-xs text-gray-400 max-w-sm mx-auto">
+            <div className="bg-white p-12 rounded-3xl border border-slate-200 text-center space-y-4 shadow-md">
+              <Car className="w-12 h-12 text-amber-600 mx-auto" />
+              <h3 className="font-serif text-xl font-bold text-slate-900">No active bookings found</h3>
+              <p className="text-xs text-slate-500 max-w-sm mx-auto font-medium">
                 Ready for your next journey? Explore our outstation routes or tour packages now.
               </p>
-              <Link to="/booking" className="gold-btn inline-block px-6 py-2.5 rounded-xl text-xs font-bold uppercase">
+              <Link to="/booking" className="gold-btn inline-block px-6 py-2.5 rounded-xl text-xs font-bold uppercase shadow">
                 Reserve Your First Trip
               </Link>
             </div>
@@ -110,34 +110,34 @@ export default function UserProfilePage() {
                 <motion.div
                   key={b.id}
                   whileHover={{ y: -2 }}
-                  className="glass-card p-6 rounded-2xl border border-gold/20 flex flex-col md:flex-row items-start md:items-center justify-between gap-6"
+                  className="bg-white p-6 rounded-2xl border border-slate-200 shadow-md flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-amber-400 transition"
                 >
                   <div className="space-y-2 flex-1">
                     <div className="flex items-center gap-3 flex-wrap">
-                      <span className="font-mono text-xs font-bold text-gold bg-gold/10 px-2.5 py-1 rounded border border-gold/30">
+                      <span className="font-mono text-xs font-bold text-amber-800 bg-amber-50 px-2.5 py-1 rounded border border-amber-200">
                         {b.booking_code}
                       </span>
                       {getStatusBadge(b.status)}
                     </div>
 
-                    <h3 className="font-serif text-lg font-bold text-white">
+                    <h3 className="font-serif text-lg font-bold text-slate-900">
                       {b.pickup_location} &rarr; {b.drop_location}
                     </h3>
 
-                    <div className="flex flex-wrap items-center gap-4 text-xs text-gray-400">
+                    <div className="flex flex-wrap items-center gap-4 text-xs text-slate-500 font-medium">
                       <span className="flex items-center gap-1">
-                        <Calendar className="w-3.5 h-3.5 text-gold" /> {b.pickup_date} ({b.pickup_time || 'Morning'})
+                        <Calendar className="w-3.5 h-3.5 text-amber-600" /> {b.pickup_date} ({b.pickup_time || 'Morning'})
                       </span>
                       <span className="flex items-center gap-1">
-                        <Car className="w-3.5 h-3.5 text-gold" /> {b.vehicle_name}
+                        <Car className="w-3.5 h-3.5 text-amber-600" /> {b.vehicle_name}
                       </span>
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between md:justify-end gap-6 w-full md:w-auto pt-4 md:pt-0 border-t md:border-t-0 border-gray-800">
+                  <div className="flex items-center justify-between md:justify-end gap-6 w-full md:w-auto pt-4 md:pt-0 border-t md:border-t-0 border-slate-100">
                     <div className="text-left md:text-right">
-                      <span className="text-[10px] text-gray-400 block uppercase">Est. Amount</span>
-                      <span className="font-serif text-xl font-bold text-gold">
+                      <span className="text-[10px] text-slate-400 block uppercase font-semibold">Est. Amount</span>
+                      <span className="font-serif text-xl font-extrabold text-amber-600">
                         ₹{b.total_amount ? b.total_amount.toLocaleString('en-IN') : 'N/A'}
                       </span>
                     </div>
@@ -145,7 +145,7 @@ export default function UserProfilePage() {
                     {b.status === 'Pending' && (
                       <button
                         onClick={() => handleCancelBooking(b.id)}
-                        className="text-xs text-red-400 hover:text-red-300 font-semibold border border-red-500/30 px-3 py-1.5 rounded-lg hover:bg-red-950/50"
+                        className="text-xs text-red-600 hover:text-white font-bold bg-red-50 hover:bg-red-600 border border-red-200 px-3.5 py-1.5 rounded-xl transition"
                       >
                         Cancel Request
                       </button>
