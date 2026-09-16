@@ -45,13 +45,12 @@ async function seedMongo() {
     phone: '+91 9876543210',
     role: 'user'
   });
-  console.log('Users seeded');
 
   // 2. Seed Fleet Cars
   await Car.deleteMany({});
   await Car.insertMany([
     {
-      name: 'Swift Dzire',
+      name: 'Swift Dzire / Etios',
       type: 'Sedan',
       capacity: '4+1 Seater AC',
       price_per_km: 12,
@@ -61,7 +60,7 @@ async function seedMongo() {
       is_available: true
     },
     {
-      name: 'Maruti Ertiga',
+      name: 'Maruti Ertiga / XL6',
       type: 'SUV',
       capacity: '6+1 Seater AC',
       price_per_km: 15,
@@ -101,73 +100,61 @@ async function seedMongo() {
       is_available: true
     }
   ]);
-  console.log('Cars seeded');
 
-  // 3. Seed Tour Packages
+  // 3. Seed Tour Packages (Exact Poster Titles & Images)
   await Package.deleteMany({});
   await Package.insertMany([
     {
-      title: 'Shirdi Spiritual Darshan',
+      title: '3 Jyotirlinga + Shirdi + Shani Shingnapur Special Package',
       category: 'Spiritual',
-      duration: '2 Days / 1 Night',
-      price: 5499,
-      badge: 'Best Seller',
-      image: '/images/package-1.jpg',
-      description: 'Complete pilgrimage tour to Shirdi Sai Baba Temple & Shani Shingnapur with private door-to-door luxury transport.',
-      highlights: ['VIP Sai Baba Darshan Assistance', 'Visit Shani Shingnapur', 'AC Luxury Vehicle', 'Toll & Driver Allowance Included']
+      duration: '3 Days / 2 Nights',
+      price: 0,
+      badge: 'Special Yatra',
+      image: '/images/package-3jyotirlinga.jpg',
+      description: 'Sacred pilgrimage tour covering Trimbakeshwar Jyotirlinga, Shirdi Sai Baba Darshan, Shani Shingnapur, Grishneshwar Jyotirlinga & Bhimashankar Jyotirlinga.',
+      highlights: ['3 Jyotirlinga Darshan', 'Shirdi Sai Baba Darshan', 'Shani Shingnapur Darshan', 'Mumbai Pickup & Drop', 'Customizable Trip Duration']
     },
     {
-      title: 'Goa Sunshine Beach Escape',
+      title: 'Mahabaleshwar Special Trip (3 Days | 2 Nights)',
+      category: 'Hill Station',
+      duration: '3 Days / 2 Nights',
+      price: 0,
+      badge: 'Weekend Getaway',
+      image: '/images/package-mahabaleshwar.jpg',
+      description: 'Complete scenic trip covering Venna Lake boating, Arthur Seat, Mapro Garden strawberry delights, Lingmala Waterfall, & Panchgani Table Land.',
+      highlights: ['Venna Lake & Arthur Seat', 'Mapro Garden Strawberry Tour', 'Lingmala Waterfall Sightseeing', 'Panchgani Table Land & Sydney Point', 'Private AC Cab & Hotel Stay']
+    },
+    {
+      title: 'Mumbai Airport Pick-Up & Drop Service',
+      category: 'Airport Transfer',
+      duration: '24/7 Available',
+      price: 0,
+      badge: 'On-Time Guaranteed',
+      image: '/images/package-airport.jpg',
+      description: 'Hassle-free, punctual airport transfers to & from Mumbai International Airport (T1 & T2), Thane, Navi Mumbai, Kalyan, Pune, & all over Maharashtra.',
+      highlights: ['Zero Waiting Delay', 'T1 & T2 Terminal Transfers', 'Sedan / SUV / Innova Fleet', 'Flight Status Monitoring', 'Best Rate Guarantee']
+    },
+    {
+      title: 'Special Alibag Beach Package (Flat 15% Off)',
       category: 'Beach',
-      duration: '4 Days / 3 Nights',
-      price: 14999,
-      badge: 'Popular Choice',
-      image: '/images/package-2.jpg',
-      description: 'Experience North & South Goa beaches, Dudhsagar waterfall safari, and cruise tours with premium comfort.',
-      highlights: ['Baga & Calangute Beach', 'Dudhsagar Waterfall Trip', 'Mandovi River Cruise', 'Hotel Pickup & Drop']
-    },
-    {
-      title: 'Lonavala & Khandala Breeze',
-      category: 'Hill Station',
-      duration: '1 Day Weekend Getaway',
-      price: 3499,
-      badge: 'Weekend Special',
-      image: '/images/package-3.jpg',
-      description: 'Refreshing hill station trip covering Tiger Point, Bhushi Dam, Karla Caves, and Wax Museum.',
-      highlights: ['Tiger Point Scenic View', 'Bhushi Dam & Waterfalls', 'Karla & Bhaja Caves', 'Same Day Return']
-    },
-    {
-      title: 'Mahabaleshwar & Panchgani Retreat',
-      category: 'Hill Station',
-      duration: '3 Days / 2 Nights',
-      price: 9999,
-      badge: 'Family Favorite',
-      image: '/images/package-4.jpg',
-      description: 'Explore Mapro Garden, Arthur Seat, Venna Lake boating, and Table Land in Panchgani.',
-      highlights: ['Mapro Garden Tour', 'Venna Lake Boating', 'Strawberry Farm Visit', 'Luxury Transport']
-    },
-    {
-      title: 'Trimbakeshwar & Nashik Grape County',
-      category: 'Spiritual',
       duration: '2 Days / 1 Night',
-      price: 6499,
-      badge: 'Exclusive',
-      image: '/images/package-5.jpg',
-      description: 'Visit Jyotirlinga Trimbakeshwar Temple, Panchavati, Kalaram Temple, and Sula Vineyards.',
-      highlights: ['Trimbakeshwar Temple Darshan', 'Panchavati & Ram Kund', 'Sula Vineyard Tour', 'Doorstep Pickup']
+      price: 0,
+      badge: 'Flat 15% Off',
+      image: '/images/package-alibag.jpg',
+      description: 'Escape to the serene shores of Alibag. Relax by Alibag Beach, Kolaba Fort, Kihim Beach, Versoli Beach, Nagaon Beach & historic forts.',
+      highlights: ['Alibag & Kihim Beach', 'Kolaba Fort & Nagaon Beach', 'Versoli & Kanakeshwar Temple', 'Doorstep Pickup from Mumbai', '15% Off Special Offer']
     },
     {
-      title: 'Ashtavinayak Yatra Tour',
-      category: 'Spiritual',
-      duration: '3 Days / 2 Nights',
-      price: 11999,
-      badge: 'Divine Package',
-      image: '/images/package-6.jpg',
-      description: 'Sacred 8 Ganesha temples pilgrimage circuit across Maharashtra in total peace and luxury.',
-      highlights: ['All 8 Ganesha Temples Covered', 'Experienced Devotional Driver', 'Comfortable AC Vehicle', 'Custom Itinerary']
+      title: 'Kokan Darshan Special Package (Flat 15% Off)',
+      category: 'Coastal Tour',
+      duration: '4 Days / 3 Nights',
+      price: 0,
+      badge: 'Flat 15% Off',
+      image: '/images/package-kokan.jpg',
+      description: 'Explore coastal beauty of Ratnagiri, Malvan, Ganpati Phule, Sindhudurg Fort, & Tarkarli Beach where mountains meet the sea.',
+      highlights: ['Ratnagiri & Malvan Forts', 'Ganpati Phule Temple Darshan', 'Sindhudurg Fort & Tarkarli Beach', 'Devbagh Beach & Backwaters', '15% Off Coastal Package']
     }
   ]);
-  console.log('Packages seeded');
 
   // 4. Seed Routes
   await Route.deleteMany({});
@@ -183,60 +170,8 @@ async function seedMongo() {
     { from_city: 'Mumbai', to_city: 'Shani Shingnapur', distance_km: 290, est_time: '5.5 hrs', start_price: 4500 },
     { from_city: 'Mumbai', to_city: 'Aurangabad', distance_km: 340, est_time: '6.0 hrs', start_price: 5200 }
   ]);
-  console.log('Routes seeded');
 
-  // 5. Seed Bookings
-  await Booking.deleteMany({});
-  await Booking.insertMany([
-    {
-      booking_code: 'BT-9012',
-      user_id: demoUser._id,
-      customer_name: 'Rahul Sharma',
-      phone: '+91 9876543210',
-      email: 'rahul@example.com',
-      service_type: 'Outstation',
-      pickup_location: 'Bandra West, Mumbai',
-      drop_location: 'Shirdi Temple',
-      pickup_date: '2026-09-20',
-      pickup_time: '06:00 AM',
-      vehicle_name: 'Toyota Innova Crysta',
-      total_amount: 4500,
-      status: 'Confirmed',
-      notes: 'Needs child seat'
-    },
-    {
-      booking_code: 'BT-9013',
-      customer_name: 'Priya Patel',
-      phone: '+91 9820011223',
-      email: 'priya@example.com',
-      service_type: 'Package',
-      pickup_location: 'Dadar, Mumbai',
-      drop_location: 'Goa Sunshine Beach Escape',
-      pickup_date: '2026-10-05',
-      pickup_time: '07:00 AM',
-      vehicle_name: 'Tempo Traveller',
-      total_amount: 14999,
-      status: 'Pending',
-      notes: 'Family of 8'
-    }
-  ]);
-  console.log('Bookings seeded');
-
-  // 6. Seed Contact Inquiries
-  await ContactInquiry.deleteMany({});
-  await ContactInquiry.insertMany([
-    {
-      name: 'Suresh Mehta',
-      phone: '+91 9811223344',
-      email: 'suresh@mehta.com',
-      service: 'Corporate Car Rental',
-      message: 'Inquiring about monthly rental rates for executive Sedan fleet.',
-      status: 'New'
-    }
-  ]);
-  console.log('Contact Inquiries seeded');
-
-  console.log('🎉 MongoDB database seeded successfully!');
+  console.log('🎉 MongoDB Atlas seeded successfully with poster packages!');
   await mongoose.disconnect();
 }
 

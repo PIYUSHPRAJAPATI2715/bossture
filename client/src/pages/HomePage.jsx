@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Car, MapPin, Calendar, Clock, Star, ShieldCheck, Award, Headset, 
   ArrowRight, CheckCircle2, ChevronRight, PhoneCall, Sparkles, Navigation, 
-  Check, Plane, HelpCircle, ChevronDown, UserCheck, Zap
+  Check, Plane, HelpCircle, ChevronDown, UserCheck, Zap, Maximize2, Send
 } from 'lucide-react';
 import axios from 'axios';
 import { trackPhoneCall } from '../config/googleAds';
@@ -297,8 +297,71 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. MANSI-STYLE POPULAR OUTSTATION ROUTES CARDS */}
-      <section className="py-16 sm:py-24 bg-white relative border-t border-b border-slate-200">
+      {/* 2. FEATURED TOUR PACKAGES (WITH FULL POSTERS & NO PRICES) */}
+      <section className="py-16 sm:py-24 bg-white border-t border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 gap-4">
+            <div>
+              <span className="text-xs font-bold text-amber-600 uppercase tracking-widest block mb-1">Unforgettable Journeys</span>
+              <h2 className="font-serif text-2xl sm:text-4xl font-extrabold text-slate-900">
+                Exclusive <span className="text-amber-600">Tour Packages</span>
+              </h2>
+            </div>
+            <Link to="/packages" className="text-xs sm:text-sm font-bold text-slate-900 border border-slate-300 hover:border-amber-500 px-5 py-2.5 rounded-full hover:bg-amber-500 transition shadow-sm">
+              View All Special Packages &rarr;
+            </Link>
+          </div>
+
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          >
+            {packages.map((pkg) => (
+              <motion.div
+                key={pkg.id}
+                variants={itemVariants}
+                whileHover={{ y: -6 }}
+                className="bg-white rounded-3xl overflow-hidden border border-slate-200 flex flex-col justify-between hover:border-amber-400 transition-all duration-300 shadow-md hover:shadow-2xl"
+              >
+                <div>
+                  <div className="relative w-full bg-slate-900 p-2 overflow-hidden flex items-center justify-center">
+                    <img 
+                      src={getImageUrl(pkg.image)} 
+                      onError={handleImageError} 
+                      alt={pkg.title} 
+                      className="w-full h-auto object-contain max-h-[480px] rounded-2xl" 
+                    />
+                    {pkg.badge && (
+                      <span className="absolute top-4 left-4 bg-amber-500 text-slate-950 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow">
+                        {pkg.badge}
+                      </span>
+                    )}
+                  </div>
+                  <div className="p-5">
+                    <h3 className="font-serif text-lg font-bold text-slate-900 mb-2 leading-snug">{pkg.title}</h3>
+                    <p className="text-xs text-slate-600 mb-4 line-clamp-2 leading-relaxed">{pkg.description}</p>
+                  </div>
+                </div>
+
+                <div className="p-5 pt-0 space-y-2">
+                  <Link
+                    to={`/booking?package=${encodeURIComponent(pkg.title)}`}
+                    className="gold-btn w-full py-3 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-md"
+                  >
+                    Contact For Package Quote <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 3. MANSI-STYLE POPULAR OUTSTATION ROUTES CARDS */}
+      <section className="py-16 sm:py-24 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -368,8 +431,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. MANSI-STYLE INTERACTIVE FLEET SHOWCASE WITH FILTER TABS */}
-      <section className="py-16 sm:py-24 bg-slate-50 border-b border-slate-200">
+      {/* 4. MANSI-STYLE INTERACTIVE FLEET SHOWCASE WITH FILTER TABS */}
+      <section className="py-16 sm:py-24 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -395,7 +458,7 @@ export default function HomePage() {
                 className={`px-5 py-2 rounded-full text-xs font-extrabold uppercase tracking-wider transition-all duration-300 ${
                   fleetFilter === cat
                     ? 'bg-slate-900 text-amber-400 shadow-md scale-105'
-                    : 'bg-white text-slate-700 border border-slate-300 hover:border-amber-400 hover:text-slate-900'
+                    : 'bg-slate-100 text-slate-700 border border-slate-300 hover:border-amber-400 hover:text-slate-900'
                 }`}
               >
                 {cat}
@@ -468,79 +531,6 @@ export default function HomePage() {
               </motion.div>
             ))}
           </motion.div>
-        </div>
-      </section>
-
-      {/* 4. WHY CHOOSE US & TRUST STATS */}
-      <section className="py-16 sm:py-24 bg-white relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <span className="text-xs font-bold text-amber-600 uppercase tracking-widest">Pinnacle of Safety</span>
-              <h2 className="font-serif text-2xl sm:text-4xl font-extrabold text-slate-900 mt-2 mb-6">
-                Why Thousands Choose Boss Tours Every Month
-              </h2>
-
-              <div className="space-y-6">
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center shrink-0 border border-amber-200 shadow-sm">
-                    <UserCheck className="w-6 h-6 text-amber-600" />
-                  </div>
-                  <div>
-                    <h4 className="text-base font-bold text-slate-900">100% Background Verified Drivers</h4>
-                    <p className="text-xs sm:text-sm text-slate-600 mt-1">Our highway chauffeurs pass stringent background checks, license verification, and hospitality etiquette training.</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center shrink-0 border border-amber-200 shadow-sm">
-                    <Zap className="w-6 h-6 text-amber-600" />
-                  </div>
-                  <div>
-                    <h4 className="text-base font-bold text-slate-900">Zero Cancellation Delay</h4>
-                    <p className="text-xs sm:text-sm text-slate-600 mt-1">Instant driver & vehicle assignment with live GPS speed and route tracking.</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center shrink-0 border border-amber-200 shadow-sm">
-                    <Headset className="w-6 h-6 text-amber-600" />
-                  </div>
-                  <div>
-                    <h4 className="text-base font-bold text-slate-900">24/7 Dedicated Support Desk</h4>
-                    <p className="text-xs sm:text-sm text-slate-600 mt-1">Our Mumbai customer care line (+91 9272174699) is available round-the-clock for flight delays or custom trip updates.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Mansi-Style Hotline Banner */}
-            <div className="relative">
-              <div className="bg-slate-900 p-8 sm:p-10 rounded-3xl border border-slate-800 text-center space-y-6 shadow-2xl text-white">
-                <div className="w-16 h-16 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto border border-amber-500/40 shadow-inner">
-                  <Star className="w-8 h-8 fill-amber-400" />
-                </div>
-                <div>
-                  <h3 className="font-serif text-3xl font-extrabold text-amber-400">4.9 ★ Rating</h3>
-                  <p className="text-xs text-slate-400 mt-1">Based on 15,000+ Verified Customer Rides</p>
-                </div>
-
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                  "Prompt pickup at Mumbai Airport, super clean Innova Crysta, and very courteous driver. Best outstation cab experience!"
-                </p>
-
-                <motion.a
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  href="tel:+919272174699"
-                  onClick={trackPhoneCall}
-                  className="gold-btn inline-flex items-center gap-3 px-8 py-4 rounded-full text-sm font-extrabold uppercase shadow-xl"
-                >
-                  <PhoneCall className="w-5 h-5" /> Call Hotline: +91 9272174699
-                </motion.a>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
