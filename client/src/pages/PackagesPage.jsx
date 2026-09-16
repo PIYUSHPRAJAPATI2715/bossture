@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Clock, CheckCircle2, Star, Sparkles, Filter } from 'lucide-react';
 import axios from 'axios';
+import { getImageUrl, handleImageError } from '../utils/imageUrl';
 
 export default function PackagesPage() {
   const [packages, setPackages] = useState([]);
@@ -72,7 +73,12 @@ export default function PackagesPage() {
               >
                 <div>
                   <div className="relative h-60 overflow-hidden">
-                    <img src={pkg.image} alt={pkg.title} className="w-full h-full object-cover" />
+                    <img 
+                      src={getImageUrl(pkg.image)} 
+                      onError={handleImageError} 
+                      alt={pkg.title} 
+                      className="w-full h-full object-cover bg-dark-card" 
+                    />
                     {pkg.badge && (
                       <span className="absolute top-4 left-4 bg-gold text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow">
                         {pkg.badge}
@@ -90,7 +96,7 @@ export default function PackagesPage() {
                     {/* Highlights */}
                     <div className="space-y-2 mb-6">
                       <p className="text-xs font-semibold text-gold uppercase tracking-wider">Highlights:</p>
-                      {pkg.highlights.map((item, idx) => (
+                      {pkg.highlights && Array.isArray(pkg.highlights) && pkg.highlights.map((item, idx) => (
                         <div key={idx} className="flex items-center gap-2 text-xs text-gray-300">
                           <CheckCircle2 className="w-3.5 h-3.5 text-gold shrink-0" />
                           <span>{item}</span>

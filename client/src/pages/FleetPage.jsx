@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Users, Shield, Check, Car } from 'lucide-react';
 import axios from 'axios';
+import { getImageUrl, handleImageError } from '../utils/imageUrl';
 
 export default function FleetPage() {
   const [cars, setCars] = useState([]);
@@ -49,7 +50,12 @@ export default function FleetPage() {
               >
                 {/* Image */}
                 <div className="lg:col-span-5 h-64 sm:h-72 rounded-2xl overflow-hidden relative">
-                  <img src={car.image} alt={car.name} className="w-full h-full object-cover" />
+                  <img 
+                    src={getImageUrl(car.image)} 
+                    onError={handleImageError} 
+                    alt={car.name} 
+                    className="w-full h-full object-cover bg-dark-card" 
+                  />
                   <span className="absolute top-4 left-4 bg-gold text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                     {car.type}
                   </span>
@@ -71,7 +77,7 @@ export default function FleetPage() {
 
                     {/* Specs Grid */}
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
-                      {car.specs.map((spec, idx) => (
+                      {car.specs && Array.isArray(car.specs) && car.specs.map((spec, idx) => (
                         <div key={idx} className="flex items-center gap-2 text-xs text-gray-300 bg-dark-card p-2.5 rounded-lg border border-gray-800">
                           <Check className="w-3.5 h-3.5 text-gold shrink-0" />
                           <span>{spec}</span>

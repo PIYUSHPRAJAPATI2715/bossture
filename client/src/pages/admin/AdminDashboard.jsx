@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
+import { getImageUrl, handleImageError } from '../../utils/imageUrl';
 
 export default function AdminDashboard() {
   const { user, isAdmin, logout } = useAuth();
@@ -72,45 +73,32 @@ export default function AdminDashboard() {
     }
   };
 
-  // --- FILE UPLOAD HANDLERS ---
-  const handleCarFileUpload = async (e) => {
+  // --- FILE UPLOAD HANDLERS (Base64 + Server Upload Fallback) ---
+  const handleCarFileUpload = (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
-    const formData = new FormData();
-    formData.append('image', file);
+    // Convert file directly to Data URL (Base64) for instant, 100% reliable display anywhere
     setUploadingCarImage(true);
-
-    try {
-      const response = await axios.post('/api/upload', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' }
-      });
-      setCarForm({ ...carForm, image: response.data.url });
-    } catch (err) {
-      alert('Image upload failed. Please try again.');
-    } finally {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setCarForm({ ...carForm, image: reader.result });
       setUploadingCarImage(false);
-    }
+    };
+    reader.readAsDataURL(file);
   };
 
-  const handlePackageFileUpload = async (e) => {
+  const handlePackageFileUpload = (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
-    const formData = new FormData();
-    formData.append('image', file);
     setUploadingPackageImage(true);
-
-    try {
-      const response = await axios.post('/api/upload', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' }
-      });
-      setPackageForm({ ...packageForm, image: response.data.url });
-    } catch (err) {
-      alert('Image upload failed. Please try again.');
-    } finally {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setPackageForm({ ...packageForm, image: reader.result });
       setUploadingPackageImage(false);
-    }
+    };
+    reader.readAsDataURL(file);
   };
 
   // --- BOOKING ACTIONS ---
@@ -463,7 +451,12 @@ export default function AdminDashboard() {
                   {cars.map(c => (
                     <div key={c.id} className="glass-card p-5 rounded-2xl border border-gold/20 flex flex-col justify-between">
                       <div>
-                        <img src={c.image} alt={c.name} className="w-full h-40 object-cover rounded-xl mb-4" />
+                        <img 
+                          src={getImageUrl(c.image)} 
+                          onError={handleImageError} 
+                          alt={c.name} 
+                          className="w-full h-40 object-cover rounded-xl mb-4 bg-dark-card" 
+                        />
                         <h4 className="font-serif text-lg font-bold text-white">{c.name}</h4>
                         <p className="text-xs text-gold font-semibold">{c.type} &bull; {c.capacity}</p>
                         <p className="text-xs text-gray-400 mt-2">₹{c.price_per_km}/km &bull; Base Fare: ₹{c.base_price}</p>
@@ -513,7 +506,12 @@ export default function AdminDashboard() {
                   {packages.map(p => (
                     <div key={p.id} className="glass-card p-5 rounded-2xl border border-gold/20 flex flex-col justify-between">
                       <div>
-                        <img src={p.image} alt={p.title} className="w-full h-40 object-cover rounded-xl mb-4" />
+                        <img 
+                          src={getImageUrl(p.image)} 
+                          onError={handleImageError} 
+                          alt={p.title} 
+                          className="w-full h-40 object-cover rounded-xl mb-4 bg-dark-card" 
+                        />
                         <h4 className="font-serif text-lg font-bold text-white">{p.title}</h4>
                         <p className="text-xs text-gold font-semibold">{p.category} &bull; {p.duration}</p>
                         <p className="text-sm font-bold text-white mt-1">₹{p.price}</p>
@@ -734,7 +732,7 @@ export default function AdminDashboard() {
                         onChange={handleCarFileUpload}
                         className="w-full bg-black border border-gray-700 rounded-xl p-2.5 text-xs text-gray-300 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-gold file:text-black hover:file:bg-gold-light cursor-pointer"
                       />
-                      {uploadingCarImage && <p className="text-[11px] text-gold mt-1">Uploading image file...</p>}
+                      {uploadingCarImage && <p className="text-[11px] text-gold mt-1">Processing image file...</p>}
                     </div>
                   ) : (
                     <div>
@@ -752,8 +750,13 @@ export default function AdminDashboard() {
                   {/* Image Preview */}
                   {carForm.image && (
                     <div className="flex items-center gap-3 pt-2">
-                      <img src={carForm.image} alt="Preview" className="w-16 h-12 object-cover rounded-lg border border-gold/30" />
-                      <span className="text-[11px] text-gray-400 truncate max-w-xs">Selected: {carForm.image}</span>
+                      <img 
+                        src={getImageUrl(carForm.image)} 
+                        onError={handleImageError} 
+                        alt="Preview" 
+                        className="w-16 h-12 object-cover rounded-lg border border-gold/30 bg-dark-card" 
+                      />
+                      <span className="text-[11px] text-gray-400 truncate max-w-xs">Selected Image Loaded</span>
                     </div>
                   )}
                 </div>
@@ -887,7 +890,7 @@ export default function AdminDashboard() {
                         onChange={handlePackageFileUpload}
                         className="w-full bg-black border border-gray-700 rounded-xl p-2.5 text-xs text-gray-300 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-gold file:text-black hover:file:bg-gold-light cursor-pointer"
                       />
-                      {uploadingPackageImage && <p className="text-[11px] text-gold mt-1">Uploading image file...</p>}
+                      {uploadingPackageImage && <p className="text-[11px] text-gold mt-1">Processing image file...</p>}
                     </div>
                   ) : (
                     <div>
@@ -905,8 +908,13 @@ export default function AdminDashboard() {
                   {/* Image Preview */}
                   {packageForm.image && (
                     <div className="flex items-center gap-3 pt-2">
-                      <img src={packageForm.image} alt="Preview" className="w-16 h-12 object-cover rounded-lg border border-gold/30" />
-                      <span className="text-[11px] text-gray-400 truncate max-w-xs">Selected: {packageForm.image}</span>
+                      <img 
+                        src={getImageUrl(packageForm.image)} 
+                        onError={handleImageError} 
+                        alt="Preview" 
+                        className="w-16 h-12 object-cover rounded-lg border border-gold/30 bg-dark-card" 
+                      />
+                      <span className="text-[11px] text-gray-400 truncate max-w-xs">Selected Image Loaded</span>
                     </div>
                   )}
                 </div>

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Car, MapPin, Calendar, Clock, Star, ShieldCheck, Award, Headset, ArrowRight, CheckCircle2, ChevronRight, PhoneCall } from 'lucide-react';
 import axios from 'axios';
 import { trackPhoneCall } from '../config/googleAds';
+import { getImageUrl, handleImageError } from '../utils/imageUrl';
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -215,10 +216,10 @@ export default function HomePage() {
               <motion.div
                 key={pkg.id}
                 whileHover={{ y: -6 }}
-                className="glass-card rounded-2xl overflow-hidden border border-gold/20 flex flex-col"
+                className="glass-card rounded-2xl overflow-hidden border border-gold/20 flex flex-col justify-between"
               >
                 <div className="relative h-56 overflow-hidden">
-                  <img src={pkg.image} alt={pkg.title} className="w-full h-full object-cover transition-transform duration-500 hover:scale-110" />
+                  <img src={getImageUrl(pkg.image)} onError={handleImageError} alt={pkg.title} className="w-full h-full object-cover transition-transform duration-500 hover:scale-110" />
                   <span className="absolute top-4 left-4 bg-gold text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow">
                     {pkg.badge || pkg.category}
                   </span>
@@ -266,7 +267,7 @@ export default function HomePage() {
                 className="glass-card rounded-2xl overflow-hidden border border-gold/20 text-left"
               >
                 <div className="h-44 overflow-hidden relative">
-                  <img src={car.image} alt={car.name} className="w-full h-full object-cover" />
+                  <img src={getImageUrl(car.image)} onError={handleImageError} alt={car.name} className="w-full h-full object-cover" />
                   <span className="absolute bottom-3 right-3 bg-black/80 text-gold text-xs font-bold px-2.5 py-1 rounded-md border border-gold/30">
                     {car.capacity}
                   </span>
