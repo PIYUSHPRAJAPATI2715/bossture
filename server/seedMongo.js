@@ -115,6 +115,26 @@ async function seedMongo() {
       highlights: ['3 Jyotirlinga Darshan', 'Shirdi Sai Baba Darshan', 'Shani Shingnapur Darshan', 'Mumbai Pickup & Drop', 'Customizable Trip Duration']
     },
     {
+      title: 'Pandharpur • Tuljapur • Akkalkot • Gangapur Divine Darshan Package',
+      category: 'Spiritual',
+      duration: '3 Days / 2 Nights',
+      price: 0,
+      badge: 'Divine Blessings',
+      image: '/images/package-pandharpur.jpg',
+      description: 'Divine spiritual circuit covering Vitthal Rukmini Temple (Pandharpur), Maa Tulja Bhavani (Tuljapur), Swami Samarth (Akkalkot) & Dattatreya Temple (Gangapur).',
+      highlights: ['Pandharpur Vithal Darshan', 'Tuljapur Tulja Bhavani Temple', 'Akkalkot Swami Samarth Maharaj', 'Gangapur Dattatreya Temple', 'Family & Senior Citizen Friendly']
+    },
+    {
+      title: 'Shirdi & Shani Shingnapur Special Package',
+      category: 'Spiritual',
+      duration: '2 Days / 1 Night',
+      price: 0,
+      badge: 'Faith & Peace',
+      image: '/images/package-shirdi-shani.jpg',
+      description: 'Spiritual journey of faith & peace covering Shirdi Sai Baba Darshan, Kakad Aarti, Shani Shingnapur Temple Darshan, & Oil Offering.',
+      highlights: ['Shirdi Sai Baba Temple Darshan', 'Shani Shingnapur Temple Darshan', 'Oil Offering at Shani Dev', 'Comfortable AC Vehicle', 'Well Planned Itinerary']
+    },
+    {
       title: 'Mahabaleshwar Special Trip (3 Days | 2 Nights)',
       category: 'Hill Station',
       duration: '3 Days / 2 Nights',
@@ -125,14 +145,14 @@ async function seedMongo() {
       highlights: ['Venna Lake & Arthur Seat', 'Mapro Garden Strawberry Tour', 'Lingmala Waterfall Sightseeing', 'Panchgani Table Land & Sydney Point', 'Private AC Cab & Hotel Stay']
     },
     {
-      title: 'Mumbai Airport Pick-Up & Drop Service',
-      category: 'Airport Transfer',
-      duration: '24/7 Available',
+      title: 'Lonavala & Khandala Weekend Getaway Package',
+      category: 'Hill Station',
+      duration: '1 Day / Weekend Special',
       price: 0,
-      badge: 'On-Time Guaranteed',
-      image: '/images/package-airport.jpg',
-      description: 'Hassle-free, punctual airport transfers to & from Mumbai International Airport (T1 & T2), Thane, Navi Mumbai, Kalyan, Pune, & all over Maharashtra.',
-      highlights: ['Zero Waiting Delay', 'T1 & T2 Terminal Transfers', 'Sedan / SUV / Innova Fleet', 'Flight Status Monitoring', 'Best Rate Guarantee']
+      badge: 'Perfect Getaway',
+      image: '/images/package-lonavala.jpg',
+      description: 'Embrace the hills! Explore Bhushi Dam, Tiger Point, Lonavala Lake, Karla Caves, Lonavala Fort, & Chocolate Villa factory.',
+      highlights: ['Bhushi Dam Waterfalls', 'Tiger Point Sunrise View', 'Karla Caves & Lonavala Lake', 'Chocolate Villa Experience', 'Ideal for Couples & Family']
     },
     {
       title: 'Special Alibag Beach Package (Flat 15% Off)',
@@ -153,6 +173,16 @@ async function seedMongo() {
       image: '/images/package-kokan.jpg',
       description: 'Explore coastal beauty of Ratnagiri, Malvan, Ganpati Phule, Sindhudurg Fort, & Tarkarli Beach where mountains meet the sea.',
       highlights: ['Ratnagiri & Malvan Forts', 'Ganpati Phule Temple Darshan', 'Sindhudurg Fort & Tarkarli Beach', 'Devbagh Beach & Backwaters', '15% Off Coastal Package']
+    },
+    {
+      title: 'Mumbai Airport Pick-Up & Drop Service',
+      category: 'Airport Transfer',
+      duration: '24/7 Available',
+      price: 0,
+      badge: 'On-Time Guaranteed',
+      image: '/images/package-airport.jpg',
+      description: 'Hassle-free, punctual airport transfers to & from Mumbai International Airport (T1 & T2), Thane, Navi Mumbai, Kalyan, Pune, & all over Maharashtra.',
+      highlights: ['Zero Waiting Delay', 'T1 & T2 Terminal Transfers', 'Sedan / SUV / Innova Fleet', 'Flight Status Monitoring', 'Best Rate Guarantee']
     }
   ]);
 

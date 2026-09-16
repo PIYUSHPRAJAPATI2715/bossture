@@ -79,7 +79,7 @@ async function seed() {
     );
   }
 
-  // 3. Seed Tour Packages (Exact Poster Titles & Images)
+  // 3. Seed All 8 Tour Packages (Exact Poster Titles & Images)
   await db.run(`DELETE FROM packages`);
   const packagesData = [
     {
@@ -93,6 +93,26 @@ async function seed() {
       highlights: JSON.stringify(['3 Jyotirlinga Darshan', 'Shirdi Sai Baba Darshan', 'Shani Shingnapur Darshan', 'Mumbai Pickup & Drop', 'Customizable Trip Duration'])
     },
     {
+      title: 'Pandharpur • Tuljapur • Akkalkot • Gangapur Divine Darshan Package',
+      category: 'Spiritual',
+      duration: '3 Days / 2 Nights',
+      price: 0,
+      badge: 'Divine Blessings',
+      image: '/images/package-pandharpur.jpg',
+      description: 'Divine spiritual circuit covering Vitthal Rukmini Temple (Pandharpur), Maa Tulja Bhavani (Tuljapur), Swami Samarth (Akkalkot) & Dattatreya Temple (Gangapur).',
+      highlights: JSON.stringify(['Pandharpur Vithal Darshan', 'Tuljapur Tulja Bhavani Temple', 'Akkalkot Swami Samarth Maharaj', 'Gangapur Dattatreya Temple', 'Family & Senior Citizen Friendly'])
+    },
+    {
+      title: 'Shirdi & Shani Shingnapur Special Package',
+      category: 'Spiritual',
+      duration: '2 Days / 1 Night',
+      price: 0,
+      badge: 'Faith & Peace',
+      image: '/images/package-shirdi-shani.jpg',
+      description: 'Spiritual journey of faith & peace covering Shirdi Sai Baba Darshan, Kakad Aarti, Shani Shingnapur Temple Darshan, & Oil Offering.',
+      highlights: JSON.stringify(['Shirdi Sai Baba Temple Darshan', 'Shani Shingnapur Temple Darshan', 'Oil Offering at Shani Dev', 'Comfortable AC Vehicle', 'Well Planned Itinerary'])
+    },
+    {
       title: 'Mahabaleshwar Special Trip (3 Days | 2 Nights)',
       category: 'Hill Station',
       duration: '3 Days / 2 Nights',
@@ -103,14 +123,14 @@ async function seed() {
       highlights: JSON.stringify(['Venna Lake & Arthur Seat', 'Mapro Garden Strawberry Tour', 'Lingmala Waterfall Sightseeing', 'Panchgani Table Land & Sydney Point', 'Private AC Cab & Hotel Stay'])
     },
     {
-      title: 'Mumbai Airport Pick-Up & Drop Service',
-      category: 'Airport Transfer',
-      duration: '24/7 Available',
+      title: 'Lonavala & Khandala Weekend Getaway Package',
+      category: 'Hill Station',
+      duration: '1 Day / Weekend Special',
       price: 0,
-      badge: 'On-Time Guaranteed',
-      image: '/images/package-airport.jpg',
-      description: 'Hassle-free, punctual airport transfers to & from Mumbai International Airport (T1 & T2), Thane, Navi Mumbai, Kalyan, Pune, & all over Maharashtra.',
-      highlights: JSON.stringify(['Zero Waiting Delay', 'T1 & T2 Terminal Transfers', 'Sedan / SUV / Innova Fleet', 'Flight Status Monitoring', 'Best Rate Guarantee'])
+      badge: 'Perfect Getaway',
+      image: '/images/package-lonavala.jpg',
+      description: 'Embrace the hills! Explore Bhushi Dam, Tiger Point, Lonavala Lake, Karla Caves, Lonavala Fort, & Chocolate Villa factory.',
+      highlights: JSON.stringify(['Bhushi Dam Waterfalls', 'Tiger Point Sunrise View', 'Karla Caves & Lonavala Lake', 'Chocolate Villa Experience', 'Ideal for Couples & Family'])
     },
     {
       title: 'Special Alibag Beach Package (Flat 15% Off)',
@@ -131,6 +151,16 @@ async function seed() {
       image: '/images/package-kokan.jpg',
       description: 'Explore coastal beauty of Ratnagiri, Malvan, Ganpati Phule, Sindhudurg Fort, & Tarkarli Beach where mountains meet the sea.',
       highlights: JSON.stringify(['Ratnagiri & Malvan Forts', 'Ganpati Phule Temple Darshan', 'Sindhudurg Fort & Tarkarli Beach', 'Devbagh Beach & Backwaters', '15% Off Coastal Package'])
+    },
+    {
+      title: 'Mumbai Airport Pick-Up & Drop Service',
+      category: 'Airport Transfer',
+      duration: '24/7 Available',
+      price: 0,
+      badge: 'On-Time Guaranteed',
+      image: '/images/package-airport.jpg',
+      description: 'Hassle-free, punctual airport transfers to & from Mumbai International Airport (T1 & T2), Thane, Navi Mumbai, Kalyan, Pune, & all over Maharashtra.',
+      highlights: JSON.stringify(['Zero Waiting Delay', 'T1 & T2 Terminal Transfers', 'Sedan / SUV / Innova Fleet', 'Flight Status Monitoring', 'Best Rate Guarantee'])
     }
   ];
 
@@ -153,6 +183,7 @@ async function seed() {
     { from_city: 'Mumbai', to_city: 'Nashik', distance_km: 170, est_time: '3.5 hrs', start_price: 2800 },
     { from_city: 'Mumbai', to_city: 'Goa', distance_km: 590, est_time: '10.5 hrs', start_price: 9500 },
     { from_city: 'Mumbai', to_city: 'Trimbakeshwar', distance_km: 180, est_time: '3.8 hrs', start_price: 3000 },
+    { from_city: 'Mumbai', to_city: 'Pandharpur', distance_km: 360, est_time: '6.5 hrs', start_price: 5500 },
     { from_city: 'Mumbai', to_city: 'Shani Shingnapur', distance_km: 290, est_time: '5.5 hrs', start_price: 4500 },
     { from_city: 'Mumbai', to_city: 'Aurangabad', distance_km: 340, est_time: '6.0 hrs', start_price: 5200 },
     { from_city: 'Mumbai', to_city: 'Alibaug', distance_km: 95, est_time: '2.5 hrs', start_price: 2200 },
@@ -167,7 +198,7 @@ async function seed() {
     );
   }
 
-  console.log('Database seeded successfully with poster packages!');
+  console.log('Database seeded successfully with all 8 poster packages!');
 }
 
 seed().catch(err => {
