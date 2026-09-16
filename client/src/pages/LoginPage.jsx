@@ -98,10 +98,6 @@ export default function LoginPage() {
             Register Here
           </Link>
         </div>
-
-        <div className="bg-gold/5 p-3 rounded-xl border border-gold/20 text-center text-[11px] text-gray-400">
-          💡 Demo Admin: <strong className="text-gold">admin@bosstours.com</strong> / <strong className="text-gold">admin123</strong>
-        </div>
       </motion.div>
     </div>
   );
