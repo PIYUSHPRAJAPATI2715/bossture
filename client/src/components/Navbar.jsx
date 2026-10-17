@@ -34,6 +34,7 @@ export default function Navbar() {
     { name: 'Packages', path: '/packages' },
     { name: 'Fleet', path: '/fleet' },
     { name: 'Routes', path: '/routes' },
+    { name: 'Stories', path: '/success-stories' },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' }
   ];
@@ -71,7 +72,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav Links */}
-          <div className="hidden lg:flex items-center gap-7">
+          <div className="hidden lg:flex items-center gap-4 xl:gap-6">
             {navLinks.map((link) => (
               <Link
                 key={link.path}

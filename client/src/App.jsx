@@ -18,6 +18,7 @@ import ContactPage from './pages/ContactPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import UserProfilePage from './pages/UserProfilePage';
+import SuccessStoriesPage from './pages/SuccessStoriesPage';
 import AdminDashboard from './pages/admin/AdminDashboard';
 
 function AppLayout() {
@@ -40,6 +41,8 @@ function AppLayout() {
           <Route path="/routes/:slug" element={<RouteDetailPage />} />
           <Route path="/booking" element={<BookingPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/success-stories" element={<SuccessStoriesPage />} />
+          <Route path="/stories" element={<SuccessStoriesPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />

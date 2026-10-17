@@ -43,6 +43,7 @@ export default function Footer() {
               <li><Link to="/packages" className="hover:text-gold transition">Tour Packages</Link></li>
               <li><Link to="/fleet" className="hover:text-gold transition">Luxury Fleet</Link></li>
               <li><Link to="/routes" className="hover:text-gold transition">Popular Routes</Link></li>
+              <li><Link to="/success-stories" className="hover:text-gold transition text-gold font-medium">Customer Stories</Link></li>
               <li><Link to="/booking" className="hover:text-gold transition">Book Online</Link></li>
             </ul>
           </div>
