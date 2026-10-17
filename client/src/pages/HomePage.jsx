@@ -674,12 +674,12 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="text-center mb-12 sm:mb-16"
           >
-            <span className="text-xs font-bold text-amber-600 uppercase tracking-widest block mb-2">Maharashtra Outstation Directory</span>
+            <span className="text-xs font-bold text-amber-600 uppercase tracking-widest block mb-2">Maharashtra Outstation Cab Directory</span>
             <h2 className="font-serif text-2xl sm:text-4xl font-extrabold text-slate-900 mb-3">
               Popular <span className="text-amber-600">Outstation Cab Routes</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto">
-              Sanitized AC cabs for one-way drops & round-trip journeys across 25+ top famous destinations in Maharashtra.
+              Sanitized AC cabs for one-way drops & round-trip journeys across 30+ top famous destinations in Maharashtra.
             </p>
           </motion.div>
 
@@ -690,47 +690,56 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            {routes.slice(0, 21).map((route) => (
-              <motion.div
-                key={route.id || route.to_city}
-                variants={itemVariants}
-                whileHover={{ y: -6 }}
-                className="bg-white p-6 rounded-2xl border border-slate-200 flex flex-col justify-between hover:border-amber-400 transition-all duration-300 shadow-sm hover:shadow-xl group"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-[10px] font-bold uppercase text-amber-700 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
-                      One-Way / Round Trip
-                    </span>
-                    <span className="text-xs text-slate-500 font-medium flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5 text-amber-600" /> {route.est_time}
-                    </span>
+            {routes.slice(0, 21).map((route) => {
+              const routeSlug = route.slug || `${route.from_city.toLowerCase().replace(/\s+/g, '-')}-to-${route.to_city.toLowerCase().replace(/\s+/g, '-')}-cab`;
+
+              return (
+                <motion.div
+                  key={route.id || route.to_city}
+                  variants={itemVariants}
+                  whileHover={{ y: -6 }}
+                  className="bg-white p-6 rounded-3xl border border-slate-200 flex flex-col justify-between hover:border-amber-400 transition-all duration-300 shadow-sm hover:shadow-xl group"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-[10px] font-extrabold uppercase text-amber-800 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
+                        {route.category || 'One-Way / Round Trip'}
+                      </span>
+                      <span className="text-xs text-slate-500 font-semibold flex items-center gap-1">
+                        <Clock className="w-3.5 h-3.5 text-amber-600" /> {route.est_time}
+                      </span>
+                    </div>
+
+                    <Link to={`/routes/${routeSlug}`} className="block group-hover:text-amber-600 transition">
+                      <h3 className="font-serif text-xl font-bold text-slate-900 mb-2 flex items-center gap-2 flex-wrap">
+                        <span>{route.from_city}</span>
+                        <ArrowRight className="w-4 h-4 text-amber-600 shrink-0" />
+                        <span>{route.to_city}</span>
+                      </h3>
+                    </Link>
+
+                    <p className="text-xs text-slate-500 mb-6 font-medium">
+                      Approx Distance: <strong className="text-slate-800 font-bold">~{route.distance_km} km</strong>
+                    </p>
                   </div>
 
-                  <h3 className="font-serif text-xl font-bold text-slate-900 mb-2 flex items-center gap-2 group-hover:text-amber-600 transition">
-                    <span>{route.from_city}</span>
-                    <ArrowRight className="w-4 h-4 text-amber-600 shrink-0" />
-                    <span>{route.to_city}</span>
-                  </h3>
-
-                  <p className="text-xs text-slate-500 mb-6">
-                    Approx Distance: <strong className="text-slate-800 font-semibold">{route.distance_km} km</strong>
-                  </p>
-                </div>
-
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                  <span className="text-xs font-bold text-amber-700 bg-amber-50 px-3 py-1.5 rounded-xl border border-amber-200/60">
-                    Sanitized AC Cab
-                  </span>
-                  <Link
-                    to={`/booking?pickup=${encodeURIComponent(route.from_city)}&drop=${encodeURIComponent(route.to_city)}`}
-                    className="gold-btn px-5 py-2.5 rounded-xl text-xs font-extrabold uppercase tracking-wider shadow-md"
-                  >
-                    Book Cab
-                  </Link>
-                </div>
-              </motion.div>
-            ))}
+                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+                    <Link
+                      to={`/routes/${routeSlug}`}
+                      className="text-xs font-bold text-amber-700 hover:text-amber-800 underline decoration-amber-300 underline-offset-4"
+                    >
+                      Route Guide &rarr;
+                    </Link>
+                    <Link
+                      to={`/booking?pickup=${encodeURIComponent(route.from_city)}&drop=${encodeURIComponent(route.to_city)}`}
+                      className="gold-btn px-4 py-2 rounded-xl text-xs font-extrabold uppercase tracking-wider shadow-sm"
+                    >
+                      Book Cab
+                    </Link>
+                  </div>
+                </motion.div>
+              );
+            })}
           </motion.div>
 
           {/* Explore All Routes CTA */}
@@ -739,7 +748,7 @@ export default function HomePage() {
               to="/routes" 
               className="inline-flex items-center gap-2 bg-slate-900 text-amber-400 hover:bg-amber-500 hover:text-slate-950 px-8 py-3.5 rounded-full text-xs sm:text-sm font-extrabold uppercase tracking-wider transition shadow-lg"
             >
-              <span>Explore All 25+ Maharashtra Routes</span>
+              <span>Explore All 30+ Maharashtra Routes</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

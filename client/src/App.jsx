@@ -11,6 +11,7 @@ import ServicesPage from './pages/ServicesPage';
 import PackagesPage from './pages/PackagesPage';
 import FleetPage from './pages/FleetPage';
 import RoutesPage from './pages/RoutesPage';
+import RouteDetailPage from './pages/RouteDetailPage';
 import BookingPage from './pages/BookingPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
@@ -36,6 +37,7 @@ function AppLayout() {
           <Route path="/packages" element={<PackagesPage />} />
           <Route path="/fleet" element={<FleetPage />} />
           <Route path="/routes" element={<RoutesPage />} />
+          <Route path="/routes/:slug" element={<RouteDetailPage />} />
           <Route path="/booking" element={<BookingPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
